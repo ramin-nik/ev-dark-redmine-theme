@@ -1,0 +1,1179 @@
+/* ==========================================================================
+   Evolution Dark - offline Redmine theme (no external fonts / CDNs / images)
+   Install: public/themes/evolution-dark/  ->  Administration > Settings > Display
+   ========================================================================== */
+@import url(../../../stylesheets/application.css);
+
+:root{
+  color-scheme: dark;
+  --bg:#1b1d31; --panel:#222540; --panel2:#2a2d4b; --row:#232641; --row-hover:#161829;
+  --line:#3a3d5f; --text:#d9dbf0; --muted:#8d91b6; --link:#8f90f7; --link-hover:#b4b5ff;
+  --accent:#7b68ee; --good:#2fd08a; --info:#22b8e6; --warn:#f2b84b; --danger:#f2616f;
+  --rail:56px;
+  --th-bg:#2e3158; --th-color:#c3c4ff; --row-alt:#272a47;
+  --ic-dot:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='3'/></svg>");
+  --ic-home:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z'/></svg>");
+  --ic-user:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='4'/><path d='M4 21c0-4 4-7 8-7s8 3 8 7'/></svg>");
+  --ic-users:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='9' cy='8' r='3.5'/><path d='M2 20c0-3.5 3-6 7-6s7 2.5 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.7 4 2.7 4 6'/></svg>");
+  --ic-folder:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/></svg>");
+  --ic-admin:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0'/><circle cx='16' cy='6' r='2'/><circle cx='10' cy='12' r='2'/><circle cx='18' cy='18' r='2'/></svg>");
+  --ic-help:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h0'/></svg>");
+  --ic-activity:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12h4l3-8 4 16 3-8h4'/></svg>");
+  --ic-grid:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='3' width='7' height='7' rx='1'/><rect x='14' y='3' width='7' height='7' rx='1'/><rect x='3' y='14' width='7' height='7' rx='1'/><rect x='14' y='14' width='7' height='7' rx='1'/></svg>");
+  --ic-issues:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='5' y='4' width='14' height='17' rx='2'/><path d='M9 4h6v3H9zM9 14l2 2 4-4'/></svg>");
+  --ic-plus:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='4' y='4' width='16' height='16' rx='2'/><path d='M12 8v8M8 12h8'/></svg>");
+  --ic-gantt:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 6h8M9 12h10M6 18h9'/></svg>");
+  --ic-calendar:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='16' rx='2'/><path d='M3 10h18M8 3v4M16 3v4'/></svg>");
+  --ic-flag:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 21V4M5 4h12l-2 4 2 4H5'/></svg>");
+  --ic-news:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 5h14v14H6a2 2 0 0 1-2-2zM8 9h6M8 13h6'/></svg>");
+  --ic-doc:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6'/></svg>");
+  --ic-book:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 0 2 2h13'/></svg>");
+  --ic-chat:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 5h16v11H9l-5 4z'/></svg>");
+  --ic-download:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3v12M7 10l5 5 5-5M4 20h16'/></svg>");
+  --ic-branch:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='6' cy='5' r='2'/><circle cx='6' cy='19' r='2'/><circle cx='18' cy='9' r='2'/><path d='M6 7v10M18 11c0 4-6 3-12 6'/></svg>");
+  --ic-cog:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='3'/><path d='M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1'/></svg>");
+  --ic-clock:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/></svg>");
+  --ic-logout:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4H5v16h4M16 8l4 4-4 4M20 12H9'/></svg>");
+  --ic-search:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><path d='M20 20l-4-4'/></svg>");
+  --ic-shield:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z'/><path d='M9 12l2 2 4-4'/></svg>");
+  --ic-tag:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12V4h8l10 10-8 8z'/><circle cx='7.5' cy='8.5' r='1.5'/></svg>");
+  --ic-check:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12l3 3 5-6'/></svg>");
+  --ic-flow:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='5' cy='6' r='2'/><circle cx='19' cy='6' r='2'/><circle cx='12' cy='19' r='2'/><path d='M5 8v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8M12 14v3'/></svg>");
+  --ic-fields:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='6' rx='1.5'/><rect x='3' y='14' width='11' height='6' rx='1.5'/><path d='M18 17h3'/></svg>");
+  --ic-list:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01'/></svg>");
+  --ic-plug:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3v5M15 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3'/></svg>");
+  --ic-info:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M12 11v6M12 7.5h.01'/></svg>");
+  --ic-key:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='8' cy='15' r='4'/><path d='M11 12l9-9M16 7l3 3M14 9l2 2'/></svg>");
+  --ic-lock:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='5' y='11' width='14' height='10' rx='2'/><path d='M8 11V7a4 4 0 0 1 8 0v4'/></svg>");
+  --ic-code:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14'/></svg>");
+  --ic-mail:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M3 7l9 6 9-6'/></svg>");
+  --ic-clip:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.3 3.3 0 0 1 5 5l-8.5 8.5a1.7 1.7 0 0 1-2.5-2.5L14 8'/></svg>");
+  --ic-bell:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4'/></svg>");
+  --ic-monitor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='12' rx='2'/><path d='M8 20h8M12 16v4'/></svg>");
+  --ic-layers:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3l9 5-9 5-9-5zM3 13l9 5 9-5'/></svg>");
+  --ic-logo:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 3h9a6 6 0 0 1 2 11.6L19 21h-4l-3.5-5.5H8V21H4zM8 7v4h4.5a2 2 0 0 0 0-4z' fill-rule='evenodd'/></svg>");
+
+}
+
+/* ---------- base ---------- */
+html,body{background:var(--bg);color:var(--text);}
+body{font:13px/1.5 Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+a,a:link,a:visited{color:var(--link);text-decoration:none;}
+a:hover,a:active{color:var(--link-hover);text-decoration:none;}
+h1,h2,h3,h4{color:#fff;border-color:var(--line);}
+hr{border-color:var(--line);}
+::selection{background:var(--accent);color:#fff;}
+*{scrollbar-color:#3d4166 transparent;scrollbar-width:thin;}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#3d4166;border-radius:8px}::-webkit-scrollbar-track{background:transparent}
+
+#wrapper,#wrapper2,#wrapper3{background:transparent;border:0;}
+#wrapper{padding:76px 20px 20px calc(var(--rail) + 20px);min-height:100vh;box-sizing:border-box;}
+#wrapper3{padding:0;}
+#footer{background:transparent;color:var(--muted);border:0;font-size:11px;}
+#footer a{color:var(--muted);}
+
+/* ---------- left icon rail ---------- */
+body::before{content:"";position:fixed;left:0;top:0;bottom:0;width:var(--rail);background:var(--panel);border-right:1px solid var(--line);z-index:20;}
+body::after{content:"";position:fixed;left:12px;top:12px;width:32px;height:32px;background:var(--accent);
+  -webkit-mask:var(--ic-logo) center/contain no-repeat;mask:var(--ic-logo) center/contain no-repeat;z-index:40;pointer-events:none;}
+
+#header{background:transparent;color:var(--text);padding:0;margin:0 0 14px;min-height:0;position:static;}
+#header h1{font-size:28px;font-weight:500;color:#fff;margin:6px 4px 0;padding:0;}
+#header h1 .breadcrumbs,#header h1 a{color:#fff;}
+#header a.mobile-toggle-button{display:none;}
+
+#main-menu{position:fixed;left:0;top:64px;bottom:0;width:var(--rail);margin:0;padding:0;background:transparent;z-index:30;overflow-y:auto;overflow-x:hidden;}
+#main-menu ul{margin:0;padding:0;list-style:none;position:static;width:auto;}
+#main-menu li{float:none;display:block;margin:4px 8px;padding:0;background:none;border:0;position:static;}
+#main-menu li ul.menu-children{display:none;}
+#main-menu li a,#main-menu li a.selected{display:block;width:40px;height:40px;padding:0;margin:0;font-size:0;line-height:0;
+  color:var(--muted);background:transparent;border:0;border-radius:10px;overflow:hidden;position:relative;text-indent:0;}
+#main-menu li a::before{content:"";display:block;width:20px;height:20px;margin:10px;background:currentColor;
+  --i:var(--ic-folder);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;}
+#main-menu a.projects::before,#main-menu a.projects.selected::before{--i:var(--ic-folder)}
+#main-menu li a:hover{color:#fff;background:var(--panel2);}
+#main-menu li a.selected,#main-menu li a.selected:hover{color:#fff;background:var(--accent);}
+#main-menu a.overview::before{--i:var(--ic-grid)}   #main-menu a.activity::before{--i:var(--ic-activity)}
+#main-menu a.roadmap::before{--i:var(--ic-flag)}    #main-menu a.issues::before{--i:var(--ic-issues)}
+#main-menu a.new-issue::before{--i:var(--ic-plus)}  #main-menu a.gantt::before{--i:var(--ic-gantt)}
+#main-menu a.calendar::before{--i:var(--ic-calendar)} #main-menu a.news::before{--i:var(--ic-news)}
+#main-menu a.documents::before{--i:var(--ic-doc)}   #main-menu a.wiki::before{--i:var(--ic-book)}
+#main-menu a.boards::before{--i:var(--ic-chat)}     #main-menu a.files::before{--i:var(--ic-download)}
+#main-menu a.repository::before{--i:var(--ic-branch)} #main-menu a.settings::before{--i:var(--ic-cog)}
+#main-menu a.time-entries::before,#main-menu a.timelog::before{--i:var(--ic-clock)}
+#main-menu a.new-issue::before{--i:var(--ic-plus)}
+#main-menu li a::before{-webkit-mask-image:var(--i);mask-image:var(--i);}
+
+/* ---------- floating top bar ---------- */
+#top-menu{position:fixed;top:12px;left:calc(var(--rail) + 20px);right:20px;height:48px;z-index:25;box-sizing:border-box;
+  display:flex;align-items:center;gap:6px;padding:0 10px;background:var(--panel);color:var(--muted);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.25);font-size:12px;}
+#top-menu ul{order:1;display:flex;margin:0;padding:0;list-style:none;gap:2px;}
+#top-menu li{float:none;margin:0;padding:0;}
+#loggedas{order:2;margin-left:auto;float:none;color:var(--muted);padding:0 8px;}
+#loggedas a{color:var(--link);}
+#account{order:3;float:none;display:flex;margin:0;padding:0;}
+#account ul{display:flex;gap:2px;}
+#top-menu a{color:var(--muted);}
+#top-menu li a,#account li a{display:block;width:34px;height:34px;padding:0;margin:0;font-size:0;line-height:0;border-radius:8px;overflow:hidden;background:transparent;}
+#top-menu li a::before{content:"";display:block;width:19px;height:19px;margin:7.5px;background:currentColor;
+  --i:var(--ic-dot);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;-webkit-mask-image:var(--i);mask-image:var(--i);}
+#top-menu li a:hover{color:#fff;background:var(--panel2);}
+#top-menu a.home::before{--i:var(--ic-home)}  #top-menu a.my-page::before{--i:var(--ic-user)}
+#top-menu a.projects::before{--i:var(--ic-folder)} #top-menu a.administration::before{--i:var(--ic-admin)}
+#top-menu a.help::before{--i:var(--ic-help)}  #top-menu a.my-account::before{--i:var(--ic-user)}
+#top-menu a.logout::before{--i:var(--ic-logout)} #top-menu a.login::before,#top-menu a.register::before{--i:var(--ic-user)}
+
+#quick-search{position:absolute;top:84px;right:26px;float:none;z-index:10;display:flex;align-items:center;gap:6px;}
+#quick-search form{display:flex;align-items:center;gap:6px;}
+#quick-search label,#quick-search a{color:var(--muted);}
+#quick-search input#q{width:140px;transition:width .2s;}
+#quick-search input#q:focus{width:220px;}
+
+/* ---------- content panel ---------- */
+#main{background:transparent;}
+#content{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0;width:auto;box-shadow:0 8px 30px rgba(0,0,0,.2);}
+#main.nosidebar #content{width:auto;}
+#sidebar{background:transparent;color:var(--text);padding:0 0 0 14px;}
+#sidebar h3{color:#fff;font-size:14px;border:0;}
+#content h2,#content h3{color:#fff;border-bottom:1px solid var(--line);padding-bottom:6px;}
+#content h2{font-size:20px;font-weight:500;}
+.contextual{color:var(--muted);}
+.contextual a{color:var(--link);}
+.breadcrumbs{color:var(--muted);}
+
+/* ---------- tables ---------- */
+table.list{background:transparent;border:1px solid var(--line);border-radius:10px;border-collapse:separate;border-spacing:0;overflow:hidden;color:var(--text);}
+table.list thead th{background:transparent;color:var(--link);font-weight:500;border:0;border-bottom:1px solid var(--line);padding:12px 8px;text-align:center;}
+table.list thead th a,table.list thead th a:visited{color:var(--link);}
+table.list thead th.checkbox{width:34px}
+table.list tbody tr{background:var(--row);}
+table.list tbody tr.odd,table.list tbody tr.even{background:var(--row);}
+table.list tbody tr:hover,table.list tbody tr.context-menu-selection{background:var(--row-hover)!important;}
+table.list tbody td{border:0;border-bottom:1px solid var(--line);padding:9px 8px;color:var(--text);text-align:center;background:transparent;}
+table.list tbody tr:last-child td{border-bottom:0;}
+table.list td.subject,table.list td.name,table.list td.title,table.list td.description,table.list td.comments{text-align:left;}
+table.list td.subject{background:linear-gradient(rgba(47,208,138,.16),rgba(47,208,138,.16)) center/calc(100% - 16px) calc(100% - 14px) no-repeat;padding-left:14px;}
+table.list tbody tr td:first-child{border-left:3px solid var(--good);}
+table.list tbody tr td.checkbox{border-left:3px solid var(--good);}
+table.list tr.issue a,table.list tbody a{color:var(--link);}
+table.list tr.issue td.subject a{color:var(--text);}
+table.list tr.issue.closed,table.list tr.issue.closed a{color:var(--muted);}
+table.list tr.issue.overdue td.due_date{color:var(--danger);}
+/* priority colours */
+table.list td.priority{color:var(--good);}
+table.list tr.priority-lowest td.priority,table.list tr.priority-low2 td.priority,table.list tr.priority-3 td.priority{color:var(--muted);}
+table.list tr.priority-high td.priority,table.list tr.priority-high1 td.priority,table.list tr.priority-5 td.priority{color:var(--warn);}
+table.list tr.priority-high2 td.priority,table.list tr.priority-high3 td.priority,table.list tr.priority-6 td.priority{color:var(--info);}
+table.list tr.priority-highest td.priority,table.list tr.priority-7 td.priority{color:var(--danger);}
+table.list tr.priority-high2 td:first-child,table.list tr.priority-high3 td:first-child,table.list tr.priority-6 td:first-child{border-left-color:var(--info);}
+table.list tr.priority-highest td:first-child,table.list tr.priority-7 td:first-child{border-left-color:var(--danger);}
+table.list tr.priority-high td:first-child,table.list tr.priority-5 td:first-child{border-left-color:var(--warn);}
+table.list tr.priority-high2 td.subject,table.list tr.priority-6 td.subject{background-image:linear-gradient(rgba(34,184,230,.16),rgba(34,184,230,.16));}
+table.list tr.priority-highest td.subject{background-image:linear-gradient(rgba(242,97,111,.16),rgba(242,97,111,.16));}
+table.list tr.group td,table.list tr.group{background:var(--panel2)!important;color:#fff;}
+table.list td.buttons a,table.list td.buttons{color:var(--muted);}
+.autoscroll{border-radius:10px;}
+tr.issue.idnt td.subject{padding-left:24px;}
+
+/* ---------- forms ---------- */
+input[type=text],input[type=password],input[type=email],input[type=number],input[type=date],input[type=search],input[type=url],input[type=file],textarea,select,.autocomplete-select{
+  background:#191b30;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 10px;box-sizing:border-box;}
+select{padding:5px 8px;}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 2px rgba(123,104,238,.3);}
+input::placeholder,textarea::placeholder{color:#62668a;}
+input[type=checkbox],input[type=radio]{accent-color:var(--accent);}
+input[type=submit],input[type=button],button,a.button,.button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:6px 14px;cursor:pointer;font-weight:500;}
+input[type=submit]:hover,input[type=button]:hover,button:hover{background:#907fff;}
+input[type=submit][name=commit]:not(.primary){background:var(--accent);}
+input[type=button],button.button-small{background:var(--panel2);color:var(--text);border:1px solid var(--line);}
+fieldset{border:1px solid var(--line);border-radius:10px;background:transparent;}
+legend{color:var(--link);}
+.box,div.box,.tabular .box{background:var(--panel2);border:1px solid var(--line);border-radius:10px;}
+p label,.tabular label{color:var(--muted);}
+form.query_form,#query_form_with_buttons{background:transparent;}
+#filters-table td{background:transparent;}
+label.block{color:var(--text);}
+.required{color:var(--danger);}
+hr{background:var(--line);}
+
+/* ---------- tabs, pagination, flash ---------- */
+.tabs{border-bottom:1px solid var(--line);}
+.tabs ul li a,div.tabs ul li a{background:transparent;color:var(--muted);border:0;border-radius:8px 8px 0 0;}
+.tabs ul li a:hover{color:#fff;background:var(--panel2);}
+.tabs ul li a.selected,.tabs ul li a.selected:hover{background:var(--panel2);color:#fff;border-bottom:2px solid var(--accent);}
+.pagination ul li a,.pagination ul li span{background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--link);}
+.pagination ul li.current span{background:var(--accent);color:#fff;border-color:var(--accent);}
+#flash_notice,.flash.notice{background:rgba(47,208,138,.12);border:1px solid var(--good);color:var(--good);border-radius:10px;}
+#flash_error,.flash.error,#errorExplanation{background:rgba(242,97,111,.12);border:1px solid var(--danger);color:#ff9aa4;border-radius:10px;}
+#flash_warning,.flash.warning{background:rgba(242,184,75,.12);border:1px solid var(--warn);color:var(--warn);border-radius:10px;}
+div.flash{background-image:none;padding-left:12px;}
+
+/* ---------- issue / wiki / misc ---------- */
+div.issue,div.issue.details,.details{background:var(--panel2);border:1px solid var(--line);border-radius:12px;}
+div.issue .subject h3{color:#fff;border:0;}
+div.issue .attributes .label,.attributes .label{color:var(--muted);}
+.journal{border-color:var(--line);}
+div.journal h4,.journal h4{background:transparent;color:var(--muted);}
+.journal.has-notes{border-color:var(--line);background:transparent;}
+.journal .wiki,.wiki{color:var(--text);}
+.wiki pre,.wiki code,pre,code{background:#14162a;border:1px solid var(--line);border-radius:8px;color:#d9dbf0;}
+.wiki table,.wiki th,.wiki td{border-color:var(--line);}
+.wiki th{background:var(--panel2);}
+.wiki blockquote,blockquote{border-left:3px solid var(--accent);background:rgba(123,104,238,.08);color:var(--text);}
+.wiki h1,.wiki h2,.wiki h3{border-color:var(--line);color:#fff;}
+#history table.list{background:transparent;}
+.tooltip span.tip{background:var(--panel2);color:var(--text);border:1px solid var(--line);}
+.badge,span.badge{background:var(--accent);color:#fff;}
+div.changeset,.changeset{border-color:var(--line);}
+.progress-bar,table.progress{background:#14162a;border-radius:6px;overflow:hidden;}
+table.progress td.closed{background:var(--good);}table.progress td.done{background:var(--info);}
+.splitcontent{color:var(--text);}
+div.box.tabular{background:transparent;border:0;}
+#login-form table{background:var(--panel2);border:1px solid var(--line);border-radius:14px;color:var(--text);}
+#login-form{margin-top:60px;}
+
+/* ---------- context menu & ui widgets ---------- */
+#context-menu ul,#context-menu li a,#context-menu a{background:var(--panel2);color:var(--text);border-color:var(--line);border-radius:6px;}
+#context-menu ul{border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);}
+#context-menu a:hover{background:var(--accent);color:#fff;}
+#context-menu li.folder>a{background:var(--panel2);}
+.ui-widget,.ui-widget-content,.ui-dialog,.ui-autocomplete,.ui-datepicker,.ui-menu{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important;border-radius:10px;}
+.ui-widget-header,.ui-dialog .ui-dialog-titlebar{background:var(--panel)!important;color:#fff!important;border-color:var(--line)!important;}
+.ui-state-default,.ui-widget-content .ui-state-default{background:var(--panel)!important;color:var(--text)!important;border-color:var(--line)!important;}
+.ui-state-hover,.ui-state-active,.ui-state-focus,.ui-menu-item .ui-state-active{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important;}
+.ui-widget-overlay{background:#000!important;opacity:.6!important;}
+.select2-container .select2-selection,.select2-dropdown{background:#191b30!important;color:var(--text)!important;border-color:var(--line)!important;}
+
+/* ---------- calendar / gantt ---------- */
+table.cal{border-color:var(--line);background:transparent;}
+table.cal td,table.cal th{border-color:var(--line);background:transparent;color:var(--text);}
+table.cal td.today{background:rgba(123,104,238,.15);}
+table.cal td.nwday,table.cal td.odd{background:rgba(255,255,255,.02);}
+table.cal th{background:var(--panel2);}
+.gantt_hdr,.gantt_subjects,.gantt_subjects div,.gantt_hdr.nwday{border-color:var(--line)!important;color:var(--text);}
+.gantt_hdr.nwday{background:rgba(255,255,255,.03);}
+.task_late{background:var(--danger)!important;}.task_done{background:var(--good)!important;}.task_todo{background:var(--info)!important;}
+
+/* ---------- misc layout ---------- */
+.icon{background-image:none;} /* hide legacy PNG icons that clash with dark UI; text still shows */
+.icon::before{content:none;}
+@media (max-width:900px){
+  :root{--rail:0px;}
+  body::before,body::after{display:none;}
+  #wrapper{padding:70px 10px 10px;}
+  #main-menu{position:static;width:auto;background:var(--panel);display:flex;}
+  #top-menu{left:10px;right:10px;}
+}
+
+/* =====================================================================
+   FIXES v2
+   ===================================================================== */
+/* --- A. Left rail: neutralise Redmine's horizontal-tab JS (hid items, white arrows) --- */
+#main-menu,#main-menu.tabs{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:var(--rail)!important;height:auto!important;
+  margin:0!important;padding:64px 0 0!important;background:var(--panel)!important;border:0!important;border-right:1px solid var(--line)!important;
+  overflow:visible!important;z-index:30;box-sizing:border-box;}
+#main-menu .tabs-buttons,#main-menu .tab-left,#main-menu .tab-right,#main-menu button{display:none!important;}
+#main-menu ul{display:block!important;position:static!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;overflow:visible!important;background:transparent!important;}
+#main-menu li{display:block!important;float:none!important;width:auto!important;height:auto!important;margin:4px 8px!important;padding:0!important;background:transparent!important;border:0!important;}
+#main-menu li a,#main-menu li a.selected{display:block!important;overflow:visible!important;background-color:transparent;color:var(--muted)!important;border:0!important;box-shadow:none;}
+#main-menu li a:hover{background-color:var(--panel2);color:#fff!important;}
+#main-menu li a.selected,#main-menu li a.selected:hover{background-color:var(--accent);color:#fff!important;}
+#main-menu li a::before{background-color:currentColor!important;}
+#main-menu li a:hover::after,#main-menu li a:focus::after{content:attr(data-label);position:absolute;left:50px;top:50%;transform:translateY(-50%);
+  font-size:12px;line-height:1.2;font-weight:500;white-space:nowrap;padding:6px 10px;background:var(--panel2);color:#fff;border:1px solid var(--line);
+  border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.45);z-index:99;pointer-events:none;}
+#main-menu a.documents::before,#main-menu a.document::before{--i:var(--ic-doc)}
+#main-menu a.time-entries::before,#main-menu a.timelog::before,#main-menu a.spent-time::before,#main-menu a.project-timelog::before,#main-menu a.time-tracking::before{--i:var(--ic-clock)}
+#main-menu a.settings::before{--i:var(--ic-cog)}
+#main-menu a.overview::before{--i:var(--ic-grid)}
+#main-menu a.new-issue::before{--i:var(--ic-plus)}
+#main-menu a.files::before{--i:var(--ic-download)}
+#main-menu a.repository::before{--i:var(--ic-branch)}
+#main-menu a.boards::before{--i:var(--ic-chat)}
+#main-menu a.help::before{--i:var(--ic-help)}
+
+/* top bar tooltips */
+#top-menu li a,#account li a{overflow:visible!important;position:relative;}
+#top-menu li a:hover::after{content:attr(data-label);position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);font-size:12px;line-height:1.2;
+  white-space:nowrap;padding:6px 10px;background:var(--panel2);color:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.45);z-index:99;pointer-events:none;}
+
+/* --- B. generic tabs: no more overflow-hidden / hidden items / white arrows --- */
+div.tabs{height:auto!important;overflow:visible!important;background:transparent;border-bottom:1px solid var(--line);}
+div.tabs ul{position:static!important;width:auto!important;display:flex;flex-wrap:wrap;gap:4px;padding:0!important;margin:0 0 -1px!important;}
+div.tabs ul li{display:block!important;float:none!important;}
+div.tabs .tabs-buttons{display:none!important;}
+
+/* --- C. SETTINGS (Administration > Settings, Project > Settings): icon grid --- */
+body.controller-settings div.tabs:not(.jstTabs),body.controller-projects.action-settings div.tabs:not(.jstTabs){border:0;margin:6px 0 24px;}
+body.controller-settings div.tabs:not(.jstTabs) ul,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px;margin:0!important;}
+body.controller-settings div.tabs:not(.jstTabs) ul li a,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul li a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  min-height:92px;padding:16px 8px!important;box-sizing:border-box;background:var(--panel2)!important;color:var(--text)!important;border:1px solid var(--line)!important;border-radius:16px!important;
+  font-weight:500;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s,background .15s;}
+body.controller-settings div.tabs:not(.jstTabs) ul li a:hover,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul li a:hover{transform:translateY(-3px);border-color:var(--accent)!important;box-shadow:0 10px 24px rgba(123,104,238,.25);color:#fff!important;}
+body.controller-settings div.tabs:not(.jstTabs) ul li a.selected,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul li a.selected{background:linear-gradient(135deg,#7b68ee,#5546d6)!important;border-color:transparent!important;color:#fff!important;box-shadow:0 10px 26px rgba(123,104,238,.4);}
+body.controller-settings div.tabs:not(.jstTabs) ul li a::before,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul li a::before,
+#content #admin-menu li a::before{content:"";display:block;width:32px;height:32px;--i:var(--ic-folder);
+  background:linear-gradient(135deg,#a99bff,#4cc9f0);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;-webkit-mask-image:var(--i);mask-image:var(--i);}
+/* per-link icons for the sidebar admin menu */
+#content #admin-menu li a.projects::before{--i:var(--ic-folder)}
+#content #admin-menu li a.users::before,#content #admin-menu li a.icon-users::before{--i:var(--ic-user)}
+#content #admin-menu li a.groups::before,#content #admin-menu li a.icon-groups::before{--i:var(--ic-users)}
+#content #admin-menu li a.roles::before,#content #admin-menu li a.icon-roles::before{--i:var(--ic-admin)}
+#content #admin-menu li a.trackers::before,#content #admin-menu li a.icon-trackers::before{--i:var(--ic-issues)}
+#content #admin-menu li a.issue-statuss::before,#content #admin-menu li a.icon-issue-statuss::before{--i:var(--ic-tick)}
+#content #admin-menu li a.workflows::before,#content #admin-menu li a.icon-workflows::before{--i:var(--ic-branch)}
+#content #admin-menu li a.categories::before,#content #admin-menu li a.icon-categories::before{--i:var(--ic-cog)}
+#content #admin-menu li a.settings::before,#content #admin-menu li a.icon-settings::before{--i:var(--ic-cog)}
+#content #admin-menu li a.ldap-authentication::before,#content #admin-menu li a.auth_sources::before,#content #admin-menu li a.icon-auth_sources::before{--i:var(--ic-lock)}
+#content #admin-menu li a.enumerations::before,#content #admin-menu li a.icon-enumerations::before{--i:var(--ic-list)}
+#content #admin-menu li a.plugins::before,#content #admin-menu li a.icon-plugins::before{--i:var(--ic-code)}
+#content #admin-menu li a.info::before,#content #admin-menu li a.icon-info::before{--i:var(--ic-help)}
+#content #admin-menu li a.administration::before,#content #admin-menu li a.icon-administration::before{--i:var(--ic-admin)}
+#content #admin-menu li a.time-entries::before,#content #admin-menu li a.icon-time-entries::before{--i:var(--ic-clock)}
+body.controller-settings div.tabs:not(.jstTabs) ul li a.selected::before,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul li a.selected::before{background:#fff;}
+#tab-general::before{--i:var(--ic-cog)}        #tab-display::before{--i:var(--ic-monitor)}  #tab-authentication::before{--i:var(--ic-lock)}
+#tab-api::before{--i:var(--ic-code)}            #tab-projects::before{--i:var(--ic-folder)}   #tab-issues::before{--i:var(--ic-issues)}
+#tab-timelog::before{--i:var(--ic-clock)}       #tab-attachments::before{--i:var(--ic-clip)}  #tab-notifications::before{--i:var(--ic-bell)}
+#tab-mail_handler::before{--i:var(--ic-mail)}   #tab-repositories::before{--i:var(--ic-branch)}
+#tab-info::before{--i:var(--ic-info)}           #tab-modules::before{--i:var(--ic-grid)}      #tab-members::before{--i:var(--ic-users)}
+#tab-versions::before{--i:var(--ic-flag)}       #tab-issue_categories::before{--i:var(--ic-tag)} #tab-wiki::before{--i:var(--ic-book)}
+#tab-boards::before{--i:var(--ic-chat)}         #tab-activities::before{--i:var(--ic-activity)} #tab-time_entries::before{--i:var(--ic-clock)}
+#tab-versions::before{--i:var(--ic-flag)}
+
+/* --- D. ADMINISTRATION index: card grid --- */
+#content #admin-menu ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;list-style:none;margin:18px 0 0;padding:0;}
+#content #admin-menu li{margin:0;padding:0;list-style:none;background:none;border:0;}
+#content #admin-menu li a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:124px;padding:20px 10px!important;
+  background:var(--panel2)!important;color:var(--text)!important;border:1px solid var(--line);border-radius:18px;font-weight:500;text-align:center;background-image:none!important;
+  transition:transform .15s,border-color .15s,box-shadow .15s;}
+#content #admin-menu li a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 28px rgba(123,104,238,.28);color:#fff!important;}
+#content #admin-menu li a::before{width:40px;height:40px;}
+#admin-menu a.icon{padding-left:0;}
+#sidebar #admin-menu ul{list-style:none;margin:0;padding:0;}
+#sidebar #admin-menu li a{display:block;padding:8px 12px;border-radius:8px;color:var(--muted);background-image:none!important;}
+#sidebar #admin-menu li a:hover{background:var(--panel2);color:#fff;}
+#sidebar #admin-menu li a.selected{background:var(--accent);color:#fff;}
+#admin-menu a.projects::before,#admin-menu a.icon-projects::before{--i:var(--ic-folder);}
+#admin-menu a.users::before,#admin-menu a.icon-users::before{--i:var(--ic-user);}
+#admin-menu a.groups::before,#admin-menu a.icon-groups::before{--i:var(--ic-users);}
+#admin-menu a.roles::before,#admin-menu a.icon-roles::before{--i:var(--ic-shield);}
+#admin-menu a.trackers::before,#admin-menu a.icon-trackers::before{--i:var(--ic-tag);}
+#admin-menu a.issue-statuses::before,#admin-menu a.icon-issue-statuses::before,#admin-menu a.issue_statuses::before,#admin-menu a.icon-issue_statuses::before{--i:var(--ic-check);}
+#admin-menu a.workflows::before,#admin-menu a.icon-workflows::before{--i:var(--ic-flow);}
+#admin-menu a.custom-fields::before,#admin-menu a.icon-custom-fields::before,#admin-menu a.custom_fields::before,#admin-menu a.icon-custom_fields::before{--i:var(--ic-fields);}
+#admin-menu a.enumerations::before,#admin-menu a.icon-enumerations::before{--i:var(--ic-list);}
+#admin-menu a.settings::before,#admin-menu a.icon-settings::before{--i:var(--ic-cog);}
+#admin-menu a.plugins::before,#admin-menu a.icon-plugins::before{--i:var(--ic-plug);}
+#admin-menu a.info::before,#admin-menu a.icon-info::before{--i:var(--ic-info);}
+#admin-menu a.ldap-authentication::before,#admin-menu a.icon-ldap-authentication::before,#admin-menu a.ldap_authentication::before,#admin-menu a.icon-ldap_authentication::before,#admin-menu a.auth-sources::before,#admin-menu a.icon-auth-sources::before{--i:var(--ic-key);}
+
+/* --- E. TABLES: kill white rows (Spent time / time tracking / reports / everything) + new header colours --- */
+table.list,table.list.odd-even,table.list.time-entries,table#time-report,table.report,table.members,table.versions,table.query-columns{background:transparent!important;color:var(--text)!important;}
+table.list tbody tr,table.list tbody tr:nth-child(odd),table.list tbody tr:nth-child(even),table.list tbody tr.odd,table.list tbody tr.even,
+table.odd-even tbody tr:nth-child(odd),table.odd-even tbody tr:nth-child(even),table.list tr.time-entry{background:var(--row)!important;}
+table.list tbody tr:nth-child(even),table.odd-even tbody tr:nth-child(even){background:var(--row-alt)!important;}
+table.list tbody tr:hover,table.list tbody tr.context-menu-selection,table.list tbody tr.hascontextmenu:hover{background:var(--row-hover)!important;}
+table.list td,table.list tbody td,table.list tfoot td,table.list tr.total td,table.list tr.total th{background-color:transparent!important;color:var(--text);border-color:var(--line)!important;}
+table.list tr.total td,table.list tr.total th,table.list tr.total-hours td{color:#fff;font-weight:600;background:rgba(123,104,238,.12)!important;}
+table.list td a,table.list td a:visited{color:var(--link);}
+table.list td.subject a,table.list td.comments{color:var(--text);}
+table.list td.hours,table.list td.estimated_hours,table.list td.spent_hours{color:var(--info);font-variant-numeric:tabular-nums;}
+table.list thead th,table.list thead th:hover,table.list th,table#time-report thead th,table.report thead th{
+  background:var(--th-bg)!important;color:var(--th-color)!important;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  border:0!important;border-bottom:2px solid var(--accent)!important;padding:12px 8px;white-space:nowrap;}
+table.list thead th a,table.list thead th a:visited,table.list thead th a:hover{color:var(--th-color)!important;}
+table.list thead th.sort-asc a,table.list thead th.sort-desc a,table.list thead th a.sort{color:#fff!important;}
+table.list tbody th{background:var(--panel2)!important;color:var(--link)!important;text-transform:none;letter-spacing:0;font-size:12px;border-bottom:1px solid var(--line)!important;}
+table.list tr.group td,table.list tr.group th,table.list tr.group{background:var(--panel2)!important;color:#fff;}
+table.list tfoot td{border-top:1px solid var(--line)!important;}
+.autoscroll,div.autoscroll table{background:transparent;}
+#content .query-totals,#content p.query-totals{color:var(--muted);}
+#content .total-for-hours,#content .total-for-estimated-hours,#content .query-totals .value{color:var(--info);}
+
+/* =====================================================================
+   FIXES v3
+   ===================================================================== */
+:root{--ic-add:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M12 5v14M5 12h14'/></svg>");}
+
+/* --- 1. Rail: the "+" (new object) item and its dropdown were rendering as white boxes --- */
+#main-menu li a:not(.selected){background-color:transparent!important;}
+#main-menu li a:not(.selected):hover{background-color:var(--panel2)!important;}
+#main-menu li a.selected,#main-menu li a.selected:hover{background-color:var(--accent)!important;}
+#main-menu a.new-object::before{--i:var(--ic-add)}
+#main-menu li:has(> ul.menu-children) > a::before{--i:var(--ic-add)}
+#main-menu a svg,#top-menu a svg{display:none!important;}
+
+/* dropdown children: hidden by default, dark flyout on hover */
+#main-menu li ul.menu-children{display:none!important;}
+#main-menu li:hover > ul.menu-children,#main-menu li:focus-within > ul.menu-children,#main-menu li ul.menu-children.show{
+  display:block!important;position:absolute!important;left:calc(var(--rail) + 4px)!important;top:auto!important;margin:-40px 0 0!important;
+  min-width:200px;padding:6px!important;background:var(--panel2)!important;border:1px solid var(--line)!important;border-radius:12px!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.5);z-index:100;}
+#main-menu li ul.menu-children::before{content:"";position:absolute;left:-14px;top:0;bottom:0;width:14px;}  /* hover bridge */
+#main-menu li ul.menu-children li{display:block!important;margin:0!important;padding:0!important;float:none!important;width:auto!important;}
+#main-menu li ul.menu-children li a,#main-menu li ul.menu-children li a:visited{
+  display:block!important;width:auto!important;height:auto!important;margin:0!important;padding:8px 12px!important;font-size:13px!important;line-height:1.4!important;
+  font-weight:500;color:var(--text)!important;border-radius:8px!important;white-space:nowrap;}
+#main-menu li ul.menu-children li a::before,#main-menu li ul.menu-children li a::after{display:none!important;content:none!important;}
+#main-menu li ul.menu-children li a:hover{background-color:var(--accent)!important;color:#fff!important;}
+
+/* --- 2. Admin cards: remove Redmine's own svg icon (was a 2nd, tiny icon) + match icons by URL --- */
+#content #admin-menu a svg,#content #admin-menu a .icon-svg,#content #admin-menu a img{display:none!important;}
+#content #admin-menu a::after{display:none;}
+#content #admin-menu a .icon-label,#content #admin-menu a span{display:block;}
+#content #admin-menu a[href*="/admin/projects"]::before{--i:var(--ic-folder)}
+#content #admin-menu a[href*="/users"]::before{--i:var(--ic-user)}
+#content #admin-menu a[href*="/groups"]::before{--i:var(--ic-users)}
+#content #admin-menu a[href*="/roles"]::before{--i:var(--ic-shield)}
+#content #admin-menu a[href*="/trackers"]::before{--i:var(--ic-tag)}
+#content #admin-menu a[href*="/issue_statuses"]::before{--i:var(--ic-check)}
+#content #admin-menu a[href*="/workflows"]::before{--i:var(--ic-flow)}
+#content #admin-menu a[href*="/custom_fields"]::before{--i:var(--ic-fields)}
+#content #admin-menu a[href*="/enumerations"]::before{--i:var(--ic-list)}
+#content #admin-menu a[href*="/settings"]::before{--i:var(--ic-cog)}
+#content #admin-menu a[href*="/auth_sources"]::before{--i:var(--ic-key)}
+#content #admin-menu a[href*="/oauth/applications"]::before,#content #admin-menu a[href*="/applications"]::before{--i:var(--ic-grid)}
+#content #admin-menu a[href*="/plugins"]::before{--i:var(--ic-plug)}
+#content #admin-menu a[href$="/admin/info"]::before,#content #admin-menu a[href*="/admin/info"]::before{--i:var(--ic-info)}
+#content #admin-menu li a::before{-webkit-mask-image:var(--i);mask-image:var(--i);}
+
+/* --- 3. Code blocks (wiki / documents / issues / news): dark background + readable syntax colours --- */
+pre,.wiki pre,div.wiki pre,pre.syntaxhl,code.syntaxhl,.syntaxhl,div.syntaxhl,.CodeRay,div.CodeRay,table.CodeRay,.CodeRay pre,table.syntaxhl,.syntaxhl pre,
+.CodeRay td.code,.CodeRay td.line-numbers,.syntaxhl td.code,.syntaxhl td.line-numbers,.syntaxhl .line-numbers,.CodeRay .line-numbers,
+.wiki code,code,.wiki tt,tt,textarea.wiki-edit,pre.wiki-edit{background:#14162a!important;color:#dfe1f5!important;border-color:var(--line)!important;}
+pre,.wiki pre,div.wiki pre{border:1px solid var(--line)!important;border-radius:10px!important;padding:12px 14px!important;overflow:auto;line-height:1.55;
+  font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;}
+code,.wiki code,tt{border:1px solid var(--line)!important;border-radius:6px!important;padding:1px 6px!important;color:#ffcb6b!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12px;}
+pre code,.wiki pre code,pre code.syntaxhl,pre.syntaxhl code,.syntaxhl code,.CodeRay code{background:transparent!important;border:0!important;padding:0!important;color:#dfe1f5!important;border-radius:0!important;}
+table.CodeRay,table.syntaxhl{border:1px solid var(--line)!important;border-radius:10px;border-collapse:separate;border-spacing:0;overflow:hidden;width:100%;}
+.CodeRay td.line-numbers,.syntaxhl td.line-numbers,.syntaxhl .line-numbers,.CodeRay .line-numbers{background:#1b1e36!important;color:#6a6f9a!important;border-right:1px solid var(--line)!important;padding:12px 8px!important;text-align:right;}
+.CodeRay td.line-numbers a,.syntaxhl .line-numbers a,.line-numbers a{color:#6a6f9a!important;}
+.CodeRay td.code,.syntaxhl td.code{padding:12px 14px!important;}
+.CodeRay td.code pre,.syntaxhl td.code pre{border:0!important;padding:0!important;border-radius:0!important;}
+.syntaxhl span.comment,.CodeRay span.comment,pre code span.comment,code.syntaxhl span.comment{color:#6d7399!important;font-style:italic;}
+.syntaxhl span.doc,.CodeRay span.doc,pre code span.doc,code.syntaxhl span.doc{color:#6d7399!important;font-style:italic;}
+.syntaxhl span.doctype,.CodeRay span.doctype,pre code span.doctype,code.syntaxhl span.doctype{color:#6d7399!important;}
+.syntaxhl span.keyword,.CodeRay span.keyword,pre code span.keyword,code.syntaxhl span.keyword{color:#c792ea!important;font-weight:600;}
+.syntaxhl span.reserved,.CodeRay span.reserved,pre code span.reserved,code.syntaxhl span.reserved{color:#c792ea!important;}
+.syntaxhl span.directive,.CodeRay span.directive,pre code span.directive,code.syntaxhl span.directive{color:#c792ea!important;}
+.syntaxhl span.preprocessor,.CodeRay span.preprocessor,pre code span.preprocessor,code.syntaxhl span.preprocessor{color:#c792ea!important;}
+.syntaxhl span.include,.CodeRay span.include,pre code span.include,code.syntaxhl span.include{color:#c792ea!important;}
+.syntaxhl span.string,.CodeRay span.string,pre code span.string,code.syntaxhl span.string{color:#a5e075!important;}
+.syntaxhl span.char,.CodeRay span.char,pre code span.char,code.syntaxhl span.char{color:#a5e075!important;}
+.syntaxhl span.attribute-value,.CodeRay span.attribute-value,pre code span.attribute-value,code.syntaxhl span.attribute-value{color:#a5e075!important;}
+.syntaxhl span.shell,.CodeRay span.shell,pre code span.shell,code.syntaxhl span.shell{color:#a5e075!important;}
+.syntaxhl span.inline,.CodeRay span.inline,pre code span.inline,code.syntaxhl span.inline{color:#a5e075!important;}
+.syntaxhl span.integer,.CodeRay span.integer,pre code span.integer,code.syntaxhl span.integer{color:#f2b84b!important;}
+.syntaxhl span.float,.CodeRay span.float,pre code span.float,code.syntaxhl span.float{color:#f2b84b!important;}
+.syntaxhl span.hex,.CodeRay span.hex,pre code span.hex,code.syntaxhl span.hex{color:#f2b84b!important;}
+.syntaxhl span.octal,.CodeRay span.octal,pre code span.octal,code.syntaxhl span.octal{color:#f2b84b!important;}
+.syntaxhl span.binary,.CodeRay span.binary,pre code span.binary,code.syntaxhl span.binary{color:#f2b84b!important;}
+.syntaxhl span.imaginary,.CodeRay span.imaginary,pre code span.imaginary,code.syntaxhl span.imaginary{color:#f2b84b!important;}
+.syntaxhl span.value,.CodeRay span.value,pre code span.value,code.syntaxhl span.value{color:#f2b84b!important;}
+.syntaxhl span.constant,.CodeRay span.constant,pre code span.constant,code.syntaxhl span.constant{color:#4cc9f0!important;}
+.syntaxhl span.class,.CodeRay span.class,pre code span.class,code.syntaxhl span.class{color:#4cc9f0!important;}
+.syntaxhl span.namespace,.CodeRay span.namespace,pre code span.namespace,code.syntaxhl span.namespace{color:#4cc9f0!important;}
+.syntaxhl span.type,.CodeRay span.type,pre code span.type,code.syntaxhl span.type{color:#4cc9f0!important;}
+.syntaxhl span.predefined-type,.CodeRay span.predefined-type,pre code span.predefined-type,code.syntaxhl span.predefined-type{color:#4cc9f0!important;}
+.syntaxhl span.predefined-constant,.CodeRay span.predefined-constant,pre code span.predefined-constant,code.syntaxhl span.predefined-constant{color:#4cc9f0!important;}
+.syntaxhl span.exception,.CodeRay span.exception,pre code span.exception,code.syntaxhl span.exception{color:#4cc9f0!important;}
+.syntaxhl span.function,.CodeRay span.function,pre code span.function,code.syntaxhl span.function{color:#82aaff!important;}
+.syntaxhl span.method,.CodeRay span.method,pre code span.method,code.syntaxhl span.method{color:#82aaff!important;}
+.syntaxhl span.predefined,.CodeRay span.predefined,pre code span.predefined,code.syntaxhl span.predefined{color:#82aaff!important;}
+.syntaxhl span.decorator,.CodeRay span.decorator,pre code span.decorator,code.syntaxhl span.decorator{color:#82aaff!important;}
+.syntaxhl span.annotation,.CodeRay span.annotation,pre code span.annotation,code.syntaxhl span.annotation{color:#82aaff!important;}
+.syntaxhl span.instance-variable,.CodeRay span.instance-variable,pre code span.instance-variable,code.syntaxhl span.instance-variable{color:#ff9e80!important;}
+.syntaxhl span.class-variable,.CodeRay span.class-variable,pre code span.class-variable,code.syntaxhl span.class-variable{color:#ff9e80!important;}
+.syntaxhl span.global-variable,.CodeRay span.global-variable,pre code span.global-variable,code.syntaxhl span.global-variable{color:#ff9e80!important;}
+.syntaxhl span.local-variable,.CodeRay span.local-variable,pre code span.local-variable,code.syntaxhl span.local-variable{color:#e3e5f7!important;}
+.syntaxhl span.variable,.CodeRay span.variable,pre code span.variable,code.syntaxhl span.variable{color:#ff9e80!important;}
+.syntaxhl span.tag,.CodeRay span.tag,pre code span.tag,code.syntaxhl span.tag{color:#f2616f!important;}
+.syntaxhl span.important,.CodeRay span.important,pre code span.important,code.syntaxhl span.important{color:#f2616f!important;font-weight:600;}
+.syntaxhl span.error,.CodeRay span.error,pre code span.error,code.syntaxhl span.error{color:#ffffff!important;background:#f2616f!important;}
+.syntaxhl span.attribute-name,.CodeRay span.attribute-name,pre code span.attribute-name,code.syntaxhl span.attribute-name{color:#ffcb6b!important;}
+.syntaxhl span.entity,.CodeRay span.entity,pre code span.entity,code.syntaxhl span.entity{color:#ffcb6b!important;}
+.syntaxhl span.escape,.CodeRay span.escape,pre code span.escape,code.syntaxhl span.escape{color:#ffcb6b!important;}
+.syntaxhl span.key,.CodeRay span.key,pre code span.key,code.syntaxhl span.key{color:#ffcb6b!important;}
+.syntaxhl span.label,.CodeRay span.label,pre code span.label,code.syntaxhl span.label{color:#ffcb6b!important;}
+.syntaxhl span.symbol,.CodeRay span.symbol,pre code span.symbol,code.syntaxhl span.symbol{color:#89ddff!important;}
+.syntaxhl span.regexp,.CodeRay span.regexp,pre code span.regexp,code.syntaxhl span.regexp{color:#ff9cac!important;}
+.syntaxhl span.color,.CodeRay span.color,pre code span.color,code.syntaxhl span.color{color:#89ddff!important;}
+.syntaxhl span.pseudo-class,.CodeRay span.pseudo-class,pre code span.pseudo-class,code.syntaxhl span.pseudo-class{color:#89ddff!important;}
+
+/* diffs / repository file views */
+table.filecontent,table.filecontent td,table.filecontent th,table.entries,.diff_in,.diff_out,table.filecontent .line-num{background:#14162a!important;color:#dfe1f5!important;border-color:var(--line)!important;}
+.diff_out{background:rgba(242,97,111,.18)!important;}.diff_in{background:rgba(47,208,138,.18)!important;}
+table.filecontent th.line-num,table.filecontent td.line-num{background:#1b1e36!important;color:#6a6f9a!important;}
+
+/* =====================================================================
+   FIXES v4 - rail alignment + expand-on-hover labels
+   ===================================================================== */
+:root{--ic-add:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4v16M4 12h16'/></svg>");
+  --rail-open:224px;}
+
+/* every top-level rail link: identical box, no leftover margins/floats from Redmine (this was shifting the "+") */
+#main-menu > ul > li,#main-menu ul > li{margin:4px 8px!important;padding:0!important;text-align:left!important;}
+#main-menu > ul > li > a,#main-menu li > a{
+  float:none!important;position:relative!important;left:auto!important;right:auto!important;top:auto!important;
+  margin:0!important;padding:0!important;width:40px;height:40px;box-sizing:border-box!important;text-align:left!important;border:0!important;}
+#main-menu li > a::before{width:20px!important;height:20px!important;margin:10px!important;flex:0 0 20px;}
+/* "+" button: same size, subtle tile so it reads as an action */
+#main-menu a.new-object,#main-menu li:has(> ul.menu-children) > a{background-color:var(--panel2)!important;color:var(--info)!important;}
+#main-menu a.new-object:hover,#main-menu li:has(> ul.menu-children) > a:hover{background-color:var(--accent)!important;color:#fff!important;}
+
+/* rail expands on hover and shows the names next to the icons */
+#main-menu,#main-menu.tabs{transition:width .18s ease,box-shadow .18s ease;}
+#main-menu:hover,#main-menu:focus-within,#main-menu.tabs:hover{width:var(--rail-open)!important;box-shadow:12px 0 32px rgba(0,0,0,.4);}
+#main-menu:hover > ul > li > a,#main-menu:focus-within > ul > li > a{display:flex!important;align-items:center;width:auto!important;}
+#main-menu:hover > ul > li > a::after,#main-menu:focus-within > ul > li > a::after,
+#main-menu:hover > ul > li > a:hover::after{content:attr(data-label)!important;position:static!important;transform:none!important;
+  font-size:13px!important;font-weight:500;line-height:1.2!important;color:inherit!important;background:none!important;border:0!important;box-shadow:none!important;
+  padding:0 14px 0 2px!important;white-space:nowrap;pointer-events:none;}
+/* dropdown ("+") opens beside the expanded rail */
+#main-menu li:hover > ul.menu-children,#main-menu li:focus-within > ul.menu-children,#main-menu li ul.menu-children.show{left:calc(100% + 4px)!important;}
+
+
+/* =====================================================================
+   FIXES v5 - settings icons, editor tabs, exact icon centring in rail
+   ===================================================================== */
+/* missing settings icons */
+#tab-integrations::before{--i:var(--ic-plug)}
+#tab-users::before{--i:var(--ic-users)}
+#tab-api::before{--i:var(--ic-code)}
+
+/* wiki / textarea editor: normal compact Edit | Preview tabs on the left, toolbar on the right */
+div.jstTabs,div.jstTabs.tabs{display:flex!important;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  height:auto!important;margin:0 0 8px!important;padding:0!important;border:0!important;border-bottom:1px solid var(--line)!important;overflow:visible!important;}
+div.jstTabs ul{position:static!important;display:flex!important;gap:4px;margin:0!important;padding:0!important;width:auto!important;}
+div.jstTabs ul li{display:block!important;float:none!important;margin:0!important;}
+div.jstTabs ul li a{display:block!important;min-height:0!important;padding:7px 16px!important;font-size:12.5px;font-weight:500;color:var(--muted)!important;
+  background:transparent!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:8px 8px 0 0!important;box-shadow:none!important;transform:none!important;}
+div.jstTabs ul li a:hover{color:#fff!important;background:var(--panel2)!important;}
+div.jstTabs ul li a.selected{color:#fff!important;background:var(--panel2)!important;border-bottom-color:var(--accent)!important;}
+div.jstTabs ul li a::before{display:none!important;content:none!important;}
+div.jstTabs .tab-elements,div.jstTabs .jstElements{float:none!important;position:static!important;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;margin:0!important;}
+
+/* rail icons: pixel-exact centring inside the 40x40 tile (collapsed state) */
+#main-menu li > a::before{position:absolute!important;left:50%!important;top:50%!important;margin:-10px 0 0 -10px!important;display:block!important;}
+#main-menu:hover > ul > li > a::before,#main-menu:focus-within > ul > li > a::before{position:static!important;margin:10px!important;}
+#main-menu li > a{display:block;}
+
+/* =====================================================================
+   FIXES v6 - editor overlap, context menu, priority colours, flash icons
+   ===================================================================== */
+:root{
+  --orange:#ff9f43; --yellow:#f5c542;
+  --ic-chev:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M9 6l6 6-6 6'/></svg>");
+  --ic-tick:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M7.5 12.5l3 3 6-7'/></svg>");
+  --ic-alert:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M12 7v6M12 16.5h.01'/></svg>");
+  --ic-warn:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3l10 18H2z'/><path d='M12 10v5M12 18h.01'/></svg>");
+}
+
+/* --- 1. Wiki editor: force a normal top-to-bottom layout (tabs + toolbar row, THEN textarea) --- */
+div.jstBlock{display:block!important;position:relative!important;overflow:visible!important;}
+div.jstBlock > div.jstTabs,div.jstBlock > div.jstTabs.tabs{position:relative!important;float:none!important;clear:both!important;width:auto!important;
+  min-height:44px!important;margin:0!important;padding:0 0 0 0!important;box-sizing:border-box;z-index:2;}
+div.jstBlock > div.jstEditor,div.jstEditor{position:relative!important;float:none!important;clear:both!important;display:block!important;
+  top:auto!important;margin:0!important;padding:0!important;z-index:1;}
+div.jstEditor textarea{display:block!important;position:static!important;margin:0!important;width:100%!important;box-sizing:border-box!important;
+  border-top-left-radius:0!important;border-top-right-radius:0!important;}
+div.jstElements{padding:4px 0!important;}
+/* toolbar buttons: dark tiles with light icons (the original icons are black, so invert them) */
+div.jstElements button,.jstElements button{background-color:#d7d9f2!important;border:1px solid #b9bce0!important;border-radius:8px!important;
+  filter:invert(1) hue-rotate(180deg);box-shadow:none!important;}
+div.jstElements button:hover{background-color:#b6b9e8!important;}
+div.jstElements span.jstSpacer{width:8px;}
+
+/* --- 2. Right-click context menu: dark container, dark submenus, light arrows --- */
+#context-menu,#context-menu ul,#context-menu li,#context-menu li ul,#context-menu ul ul{background:var(--panel)!important;border-color:var(--line)!important;color:var(--text)!important;}
+#context-menu ul{border:1px solid var(--line)!important;border-radius:12px!important;padding:6px!important;box-shadow:0 14px 36px rgba(0,0,0,.55)!important;}
+#context-menu li{border:0!important;background-image:none!important;}
+#context-menu a,#context-menu li a,#context-menu li.folder > a{background:var(--panel2)!important;color:var(--text)!important;border:1px solid transparent!important;border-radius:10px!important;}
+#context-menu a:hover,#context-menu li:hover > a,#context-menu li.folder:hover > a,#context-menu li.folder > a:hover,#context-menu a.selected,#context-menu li a:focus{
+  background:var(--accent)!important;color:#fff!important;border-color:transparent!important;box-shadow:none!important;}
+#context-menu a.disabled,#context-menu a.disabled:hover{background:var(--panel2)!important;color:var(--muted)!important;opacity:.5;cursor:default;}
+#context-menu hr{border-color:var(--line)!important;background:var(--line)!important;}
+#context-menu a svg,#context-menu a .icon-svg{color:var(--link)!important;stroke:currentColor!important;}
+#context-menu a:hover svg,#context-menu a:hover .icon-svg,#context-menu li:hover > a svg{color:#fff!important;}
+#context-menu a.icon-checked svg,#context-menu a.icon-checked .icon-svg{color:var(--good)!important;}
+/* submenu arrow: replace the dark one with a light chevron */
+#context-menu li.folder > a::after,#context-menu a.submenu::after{display:none!important;content:none!important;}
+#context-menu li.folder{position:relative;}
+#context-menu li.folder::after{content:"";position:absolute;right:8px;top:50%;width:16px;height:16px;margin-top:-8px;background:var(--muted);pointer-events:none;
+  -webkit-mask:var(--ic-chev) center/contain no-repeat;mask:var(--ic-chev) center/contain no-repeat;}
+#context-menu li.folder:hover::after{background:#fff;}
+
+/* --- 3. Priority colours: High = yellow, Urgent = orange, Immediate = red (text, left stripe, subject tint) --- */
+table.list tr.priority-high td.priority,table.list tr.priority-high1 td.priority,table.list tr.priority-5 td.priority{color:var(--yellow)!important;}
+table.list tr.priority-high2 td.priority,table.list tr.priority-6 td.priority{color:var(--orange)!important;}
+table.list tr.priority-high3 td.priority,table.list tr.priority-highest td.priority,table.list tr.priority-7 td.priority{color:var(--danger)!important;}
+table.list tr.priority-high td:first-child,table.list tr.priority-high1 td:first-child,table.list tr.priority-5 td:first-child{border-left-color:var(--yellow)!important;}
+table.list tr.priority-high2 td:first-child,table.list tr.priority-6 td:first-child{border-left-color:var(--orange)!important;}
+table.list tr.priority-high3 td:first-child,table.list tr.priority-highest td:first-child,table.list tr.priority-7 td:first-child{border-left-color:var(--danger)!important;}
+table.list tr.priority-high td.subject,table.list tr.priority-high1 td.subject,table.list tr.priority-5 td.subject{background-image:linear-gradient(rgba(245,197,66,.16),rgba(245,197,66,.16));}
+table.list tr.priority-high2 td.subject,table.list tr.priority-6 td.subject{background-image:linear-gradient(rgba(255,159,67,.17),rgba(255,159,67,.17));}
+table.list tr.priority-high3 td.subject,table.list tr.priority-highest td.subject,table.list tr.priority-7 td.subject{background-image:linear-gradient(rgba(242,97,111,.17),rgba(242,97,111,.17));}
+/* same colours for priority labels elsewhere (issue page, cards) */
+.priority-high,.priority-high1{--pc:var(--yellow);} .priority-high2{--pc:var(--orange);} .priority-high3,.priority-highest{--pc:var(--danger);}
+div.issue .priority.priority-high,div.issue .priority.priority-high1{color:var(--yellow);}
+div.issue .priority.priority-high2{color:var(--orange);}
+div.issue .priority.priority-high3,div.issue .priority.priority-highest{color:var(--danger);}
+
+/* --- 4. Flash / success messages: icon drawn INSIDE the box, vertically centred --- */
+div.flash,#flash_notice,#flash_error,#flash_warning,.flash.notice,.flash.error,.flash.warning{
+  position:relative!important;background-image:none!important;padding:11px 16px 11px 46px!important;margin:0 0 14px!important;
+  min-height:0;display:block;box-sizing:border-box;line-height:1.45;font-weight:500;}
+div.flash > svg,div.flash > img,div.flash > .icon,div.flash > .icon-svg,div.flash > span.icon{display:none!important;}
+div.flash::before,#flash_notice::before,#flash_error::before,#flash_warning::before{content:""!important;position:absolute!important;display:block!important;
+  left:16px!important;right:auto!important;top:50%!important;width:20px!important;height:20px!important;margin:-10px 0 0 0!important;background:currentColor!important;border:0!important;
+  -webkit-mask:var(--ic-tick) center/contain no-repeat;mask:var(--ic-tick) center/contain no-repeat;}
+#flash_error::before,.flash.error::before{-webkit-mask-image:var(--ic-alert)!important;mask-image:var(--ic-alert)!important;}
+#flash_warning::before,.flash.warning::before{-webkit-mask-image:var(--ic-warn)!important;mask-image:var(--ic-warn)!important;}
+div.flash::after{display:none!important;}
+/* "No data to display" boxes */
+p.nodata,.nodata,div.nodata{background:rgba(245,197,66,.12)!important;border:1px solid rgba(245,197,66,.55)!important;color:var(--yellow)!important;border-radius:10px;}
+
+/* =====================================================================
+   FIXES v7 - editor overlap (all structures) + readable secondary text
+   ===================================================================== */
+:root{--muted:#a1a5cc; --sub:#a9add2; --sub-strong:#c9ccee;}
+
+/* --- 1. Editor: tabs/toolbar must be IN FLOW above the textarea, whatever the markup nesting --- */
+div.jstTabs,div.jstTabs.tabs{position:relative!important;float:none!important;clear:both!important;width:auto!important;height:auto!important;
+  min-height:44px!important;margin:0!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;
+  box-sizing:border-box!important;z-index:2;}
+div.jstTabs ul,div.jstTabs .tab-elements,div.jstTabs .jstElements{position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;}
+div.jstTabs + div.jstEditor,div.jstTabs ~ div.jstEditor,div.jstEditor{position:relative!important;top:auto!important;margin-top:0!important;margin-bottom:0!important;clear:both!important;float:none!important;}
+div.jstEditor textarea,textarea.wiki-edit{position:static!important;margin-top:0!important;top:auto!important;transform:none!important;}
+div.jstHandle{position:static!important;}
+div.jstBlock{display:block!important;position:relative!important;padding-top:0!important;}
+
+/* --- 2. Secondary / grey text everywhere: readable on the dark panels --- */
+em.info,.info,span.info,p.info,.author,span.author,p.author,.news .author,.news-article .author,div.news span.author,
+.update,.updated,.wiki-page-info,.hint,p.hint,.small,.next-prev-links,.next-prev-links .position,#footer,
+dd span.description,#activity dd .description,#activity dt .time,#activity dt .time a,#activity dd span.author,
+.journal h4 .author,.journal .update,.query-totals,.ticket-meta,span.icon-comment,.comments .info,
+.contextual,.pagination .per-page,p.subtitle,.subtitle,td.description,.attachments .author,.attachments .description,
+.members .info,.versions .info,span.count,.badge-count,em,i.info{color:var(--sub)!important;}
+span.summary,p.summary,.summary,div.news .summary,.news-article .summary{color:var(--sub-strong)!important;font-style:italic;font-weight:600;}
+abbr,abbr[title],span.time-ago,.time{color:inherit;border-bottom:1px dotted var(--muted)!important;text-decoration:none;}
+/* keep real emphasis in wiki/issue text readable but not dim */
+.wiki em,.wiki i,.journal .wiki em{color:inherit!important;}
+/* headings' icons (Latest news, Issues, Spent time ...) */
+h2 svg,h3 svg,h4 svg,h3.icon svg,.box h3 svg,#sidebar h3 svg{color:var(--link)!important;stroke:currentColor!important;opacity:1!important;}
+h3 .icon,h3.icon,h2.icon{opacity:1!important;}
+/* assorted dim greys Redmine hard-codes */
+.news h3,.news h4,div.news h4{color:#fff;}
+div.news p,div.news .wiki{color:var(--text);}
+.version-description,p.version-description,.project-description,.description .wiki{color:var(--text)!important;}
+#content p.nodata+p,.gantt_hdr + .gantt_hdr{color:var(--sub);}
+
+/* =====================================================================
+   FIXES v8 - smaller editor bar + text always starts BELOW it
+   ===================================================================== */
+/* remove the empty band my earlier min-height created above the bar */
+div.jstTabs,div.jstTabs.tabs{min-height:0!important;margin:0 0 2px!important;border-bottom:0!important;}
+
+/* compact Edit | Preview tabs */
+div.jstTabs ul li a{padding:4px 12px!important;font-size:12px!important;line-height:1.3!important;border-radius:6px 6px 0 0!important;}
+div.jstTabs ul{gap:2px!important;}
+
+/* compact toolbar: smaller tiles, tighter spacing */
+div.jstElements{padding:2px 0!important;gap:0!important;}
+div.jstElements button,.jstElements button{zoom:.78;margin:0 2px!important;border-radius:9px!important;}
+div.jstElements span.jstSpacer{width:6px!important;margin:0!important;}
+
+/* the bar overlays the top of the textarea in Redmine's markup -> reserve room for it inside the textarea */
+div.jstEditor textarea,textarea.wiki-edit,.jstBlock textarea{padding-top:40px!important;}
+/* plain textareas without the toolbar keep normal padding */
+textarea:not(.wiki-edit){padding-top:8px;}
+
+/* =====================================================================
+   FIXES v9 - all small Redmine icons & arrows use the light "sub text" colour
+   ===================================================================== */
+:root{
+  --icon-color:var(--sub);       /* change this one value to recolour every small icon */
+  --icon-hover:#ffffff;
+  --ic-up:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19V5M5 12l7-7 7 7'/></svg>");
+  --ic-down:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M12 5v14M5 12l7 7 7-7'/></svg>");
+}
+
+/* 1. SVG icons (person, arrows, edit, delete, copy, links ...) */
+svg.icon-svg,.icon-svg,svg.s12,svg.s14,svg.s16,svg.s18,svg.s20,svg.s24,
+.icon svg,a svg,button svg,td.buttons svg,.contextual svg,.breadcrumbs svg,.pagination svg,
+a.user svg,span.user svg,.assigned-to svg,.author svg{
+  color:var(--icon-color)!important;stroke:currentColor!important;opacity:1!important;}
+a:hover svg,a:hover .icon-svg,button:hover svg,a.icon:hover svg{color:var(--icon-hover)!important;}
+/* icons inside colored/active controls stay white */
+#content input[type=submit] svg,.button svg,a.button svg,.tabs ul li a.selected svg,
+body.controller-settings div.tabs ul li a.selected svg{color:#fff!important;}
+/* keep my own top bar / rail icons untouched (they are CSS masks) */
+#main-menu a svg,#top-menu a svg{display:none!important;}
+
+/* 2. Table header sort arrows (the original PNG arrows are dark) */
+table.list thead th a.sort,table.list thead th a.sort.asc,table.list thead th a.sort.desc{
+  background-image:none!important;position:relative;padding-right:18px!important;}
+table.list thead th a.sort::after{content:"";position:absolute;right:0;top:50%;width:13px;height:13px;margin-top:-6.5px;background:#fff;
+  -webkit-mask:var(--ic-down) center/contain no-repeat;mask:var(--ic-down) center/contain no-repeat;}
+table.list thead th a.sort.asc::after{-webkit-mask-image:var(--ic-up);mask-image:var(--ic-up);}
+table.list thead th a.sort.desc::after{-webkit-mask-image:var(--ic-down);mask-image:var(--ic-down);}
+
+/* 3. Collapsible sections (Filters, Options, ...): light chevron instead of the dark PNG arrow */
+fieldset.collapsible > legend,legend.icon-expended,legend.icon-collapsed{
+  background-image:none!important;position:relative;padding-left:22px!important;cursor:pointer;}
+fieldset.collapsible > legend::before,legend.icon-expended::before,legend.icon-collapsed::before{
+  content:""!important;position:absolute;left:2px;top:50%;width:14px;height:14px;margin-top:-7px;background:var(--icon-color);
+  -webkit-mask:var(--ic-chev) center/contain no-repeat;mask:var(--ic-chev) center/contain no-repeat;transform:rotate(90deg);transition:transform .15s;}
+fieldset.collapsible.collapsed > legend::before,legend.icon-collapsed::before{transform:rotate(0deg);}
+fieldset.collapsible > legend:hover::before{background:var(--icon-hover);}
+fieldset.collapsible > legend > svg,legend.icon-expended > svg,legend.icon-collapsed > svg{display:none!important;}
+
+/* 4. Image-only arrows/handles: invert the dark image to a light one */
+#sidebar-switch-button,.expander,.sort-handle,a.toggle-checkboxes,.toggle-all-arrow,.handle{filter:invert(1) brightness(.85);}
+#sidebar-switch-button:hover{filter:invert(1) brightness(1.2);}
+
+/* =====================================================================
+   FIXES v10 - filled s20 icon-rtl invisible on dark background + spacing
+   ===================================================================== */
+/* 1. Recolour the filled (not stroked) icons - fill is hard-coded dark grey in Redmine's SVG,
+      so overriding stroke/color alone never helped. Force fill + color. */
+svg.icon-rtl,svg.s20,.icon-rtl,svg.icon-svg[style*="fill"],svg[class*="icon"]{
+  fill:var(--icon-color)!important;stroke:var(--icon-color)!important;color:var(--icon-color)!important;}
+svg.icon-rtl *,svg.s20 *,.icon-rtl *{fill:var(--icon-color)!important;stroke:var(--icon-color)!important;}
+a:hover svg.icon-rtl,a:hover svg.s20,button:hover svg.icon-rtl,button:hover svg.s20,
+svg.icon-rtl:hover,svg.s20:hover{fill:var(--icon-hover)!important;stroke:var(--icon-hover)!important;color:var(--icon-hover)!important;}
+svg.icon-rtl *,svg.s20 *{transition:fill .15s,stroke .15s;}
+/* 2. Position: give the icon breathing room and keep it on the text line */
+svg.icon-rtl,svg.s20{vertical-align:middle;display:inline-block;margin:0 5px;flex-shrink:0;}
+
+/* 3. Tab panels: spacing under the tab strip and around the content */
+.tabs,div.tabs{margin-bottom:16px!important;}
+#content div.tabs ~ *,#content [id^="tab-content"]{margin-top:0;}
+[id^="tab-content"],#tab-content-general,.tab-content{padding-bottom:16px!important;margin-bottom:18px!important;}
+/* selected tab keeps its white icon */
+.tabs ul li a.selected svg,.tabs ul li a.selected svg *{fill:#fff!important;stroke:#fff!important;color:#fff!important;}
+
+/* =====================================================================
+   FIXES v11 - stubborn dark icon + Gantt header / Calendar white boxes
+   ===================================================================== */
+/* --- 1. Kill the dark s20 icon-rtl for good: cover SVG shapes AND dark PNG backgrounds --- */
+svg.icon-rtl,svg.s20,svg.icon-svg,.icon-rtl,svg.icon-rtl *:not(title):not(desc){
+  fill:var(--icon-color)!important;stroke:var(--icon-color)!important;color:var(--icon-color)!important;}
+svg.icon-rtl path,svg.icon-rtl circle,svg.icon-rtl rect,svg.icon-rtl line,svg.icon-rtl polyline,svg.icon-rtl polygon,
+svg.s20 path,svg.s20 circle,svg.s20 rect,svg.s20 line,svg.s20 polyline,svg.s20 polygon,
+svg.icon-svg path,svg.icon-svg circle,svg.icon-svg rect,svg.icon-svg line,svg.icon-svg polyline,svg.icon-svg polygon{
+  fill:var(--icon-color)!important;stroke:var(--icon-color)!important;}
+/* if the icon is actually a dark PNG sprite, invert it to light instead */
+.icon-rtl:not(svg),span.icon-rtl,a.icon-rtl,.icon-rtl[class*="icon"]:not(svg){
+  background-color:transparent!important;}
+.icon-rtl:not(svg):not(:empty){filter:invert(1) brightness(1.15) hue-rotate(180deg)!important;}
+a:hover .icon-rtl,button:hover .icon-rtl,.icon-rtl:hover{filter:invert(1) brightness(2)!important;}
+/* keep position fixes from v10 */
+svg.icon-rtl,svg.s20,.icon-rtl{vertical-align:middle;margin:0 5px;}
+
+/* --- 2. Gantt chart: dark header instead of the white/ugly default --- */
+.gantt_hdr,.gantt_hdr_nodates,gantt_hdr,.gantt-selected-column{
+  background:var(--th-bg)!important;color:var(--th-color)!important;border-color:var(--line)!important;}
+.gantt_hdr a,.gantt_hdr span,.gantt_hdr td,.gantt_hdr div{color:var(--th-color)!important;background:transparent!important;}
+.gantt_hdr_noday,.gantt_hdr_nonworkdate{background:var(--row)!important;color:var(--muted)!important;}
+.gantt_hdr_monday,.gantt_hdr_sunday{background:var(--panel2)!important;}
+.gantt_hdr a:hover{color:#fff!important;}
+/* gantt body / subjects / task lines on dark */
+.gantt_subjects,.gantt_subjects_column,#gantt_area,.gantt_content,.task,table.gantt-table,.gantt-table td{
+  background:transparent!important;color:var(--text)!important;}
+.gantt_subjects_column,.gantt_selected_column{border-color:var(--line)!important;}
+.gantt_selected_column{background:rgba(123,104,238,.08)!important;}
+.gantt_line,.gantt_line_container{filter:none;}
+.gantt_line>div{opacity:.9;}
+/* today line / selected day markers stay visible */
+.gantt_selected_line,.today_marker,.gantt-today-line{background:var(--danger)!important;}
+/* month/week names row */
+.gantt_hdr_scale,.gantt_hdr_month,.gantt_hdr_week{background:var(--panel2)!important;color:var(--th-color)!important;}
+
+/* --- 3. Calendar: dark cells everywhere --- */
+table.cal{background:var(--panel)!important;border-color:var(--line)!important;color:var(--text)!important;border-radius:10px;overflow:hidden;}
+table.cal thead th,table.cal th{background:var(--th-bg)!important;color:var(--th-color)!important;border-color:var(--line)!important;padding:8px 4px;}
+table.cal td{background:var(--row)!important;color:var(--text)!important;border-color:var(--line)!important;vertical-align:top;}
+table.cal td.odd,table.cal td.even{background:var(--row)!important;}
+table.cal td.nwday,table.cal td.other-month{background:var(--panel2)!important;color:var(--muted)!important;}
+table.cal td.today{background:rgba(123,104,238,.22)!important;box-shadow:inset 0 0 0 1px var(--accent);}
+table.cal td span.day-num,table.cal td a{color:var(--link)!important;}
+table.cal td a:hover{color:#fff!important;}
+table.cal .week-number,table.cal td.week-number{background:var(--panel2)!important;color:var(--muted)!important;}
+/* calendar header row (month nav) */
+.calheader,.cal .calheader{background:transparent!important;color:var(--text)!important;}
+.calheader a,.calheader span{color:var(--link)!important;}
+.calheader svg,.calheader .icon-svg{color:var(--icon-color)!important;fill:var(--icon-color)!important;stroke:var(--icon-color)!important;}
+/* issue chips inside calendar cells */
+table.cal td .issue,table.cal a.issue,table.cal td .tooltip{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important;border-radius:6px;}
+/* week numbers / legend strip below the calendar */
+p.cal-legend,.cal_legend{color:var(--muted)!important;background:transparent!important;}
+
+/* =====================================================================
+   FIXES v12 - ul.cal sidebar calendar (list, not table) + sidebar arrows
+   ===================================================================== */
+/* --- 1. The right-sidebar calendar is a <ul class="cal"> --- */
+ul.cal,ul.cal *{box-sizing:border-box;}
+ul.cal{background:var(--panel2)!important;border:1px solid var(--line)!important;border-radius:10px;color:var(--text)!important;}
+/* day-name header row */
+ul.cal li.calhead,ul.cal .calhead{background:var(--th-bg)!important;color:var(--th-color)!important;border-color:var(--line)!important;font-weight:500;text-align:center;}
+/* week-number column / rows */
+ul.cal li.week-number,ul.cal .week-number{background:var(--panel2)!important;color:var(--muted)!important;border-color:var(--line)!important;}
+ul.cal .label-week{color:var(--muted)!important;font-size:10px;}
+/* day cells */
+ul.cal li.calbody,ul.cal .calbody{background:var(--row)!important;color:var(--text)!important;border-color:var(--line)!important;}
+ul.cal li.other-month,ul.cal .other-month{background:var(--panel2)!important;color:var(--muted)!important;}
+ul.cal li.nwday,ul.cal .nwday{background:var(--panel2)!important;color:var(--muted)!important;}
+ul.cal li.today,ul.cal .today{background:rgba(123,104,238,.22)!important;box-shadow:inset 0 0 0 1px var(--accent);color:#fff!important;}
+/* day numbers + abbreviations */
+ul.cal p.day-num,ul.cal .day-num{background:transparent!important;margin:0;color:inherit!important;}
+ul.cal span.day-value{color:var(--text)!important;}
+ul.cal .other-month span.day-value,ul.cal .nwday span.day-value{color:var(--muted)!important;}
+ul.cal span.abbr-day{color:var(--muted)!important;font-size:10px;}
+/* links / issues inside calendar cells */
+ul.cal a,ul.cal a.issue{color:var(--link)!important;}
+ul.cal a:hover{color:#fff!important;}
+
+/* --- 2. Right-sidebar arrows: recolour SVG ones, invert PNG/image ones --- */
+#sidebar svg,#sidebar svg *,#sidebar .icon-svg,#sidebar .icon-svg *{
+  fill:var(--icon-color)!important;stroke:var(--icon-color)!important;color:var(--icon-color)!important;}
+#sidebar a:hover svg,#sidebar a:hover svg *,#sidebar button:hover svg,#sidebar .expander:hover{
+  fill:#fff!important;stroke:#fff!important;color:#fff!important;}
+/* dark PNG arrow icons (expander / collapse / sort arrows) in the sidebar */
+#sidebar .expander,#sidebar img[src*="arrow"],#sidebar img[src*="bullet"],#sidebar img[src*="toggle"],
+#sidebar a.icon img,#sidebar .toggle-all-arrow,#sidebar .sort-handle{
+  filter:invert(1) brightness(1.1) hue-rotate(180deg)!important;}
+#sidebar .expander:hover,#sidebar a:hover img[src*="arrow"]{filter:invert(1) brightness(2)!important;}
+/* generic small icons in sidebar headings/links */
+#sidebar h3 svg,#sidebar li a svg{fill:var(--icon-color)!important;stroke:var(--icon-color)!important;color:var(--icon-color)!important;}
+
+/* =====================================================================
+   FIXES v13 - settings page tab strip: spacing from the line below + dark line
+   ===================================================================== */
+/* the white line under the tabs comes from Redmine's default .tabs border - make it dark */
+.tabs,div.tabs{position:relative;border-bottom:2px solid var(--line)!important;background:transparent!important;
+  margin-bottom:18px!important;padding-bottom:6px!important;}
+.tabs ul,div.tabs ul{border-bottom:0!important;background:transparent!important;margin:0!important;}
+/* lift the tab labels a little off the line and give them room */
+.tabs ul li,div.tabs ul li{margin:0 2px 2px 0!important;}
+.tabs ul li a,div.tabs ul li a{padding:8px 14px!important;display:inline-block!important;line-height:1.2!important;}
+/* selected tab sits ON the dark line, accent under it */
+.tabs ul li a.selected,div.tabs ul li a.selected{border-bottom:2px solid var(--accent)!important;margin-bottom:-2px!important;}
+/* hidden scroll arrows (tab-left / tab-right) still get light icons if ever shown */
+.tabs-buttons button{background:var(--panel2)!important;border:1px solid var(--line)!important;border-radius:6px!important;}
+.tabs-buttons button svg.s18.icon-svg{fill:var(--icon-color)!important;stroke:var(--icon-color)!important;color:var(--icon-color)!important;}
+
+/* =====================================================================
+   FIXES v14 - chevrons-right s20 icon: light colour when idle + left margin
+   ===================================================================== */
+/* these icons are <svg><use href="...#icon--..."></use></svg> sprites that draw with
+   currentColor - only the inherited "color" reaches the shadow DOM, so force it */
+svg.s20.icon-svg.icon-rtl,svg.s18.icon-svg.icon-rtl,
+svg.icon-svg.icon-rtl,svg.s20.icon-svg,svg.s18.icon-svg{
+  color:var(--icon-color)!important;
+  fill:none!important;stroke:currentColor!important;opacity:1!important;}
+/* same on any parent hover that already turns icons white */
+a:hover svg.s20.icon-svg,a:hover svg.s18.icon-svg,
+button:hover svg.s20.icon-svg,button:hover svg.s18.icon-svg,
+svg.s20.icon-svg:hover,svg.s18.icon-svg:hover{color:var(--icon-hover)!important;}
+/* breathing room from the vertical line on its left + keep it centred */
+svg.s20.icon-svg.icon-rtl,svg.s18.icon-svg.icon-rtl,svg.s20.icon-svg,svg.s18.icon-svg{
+  display:inline-block!important;vertical-align:middle!important;
+  margin-left:10px!important;margin-right:6px!important;flex-shrink:0!important;}
+/* if it sits inside a flex row, pad the container too */
+.tabs-buttons button,.contextual,.contextual span,#content .contextual a{
+  gap:6px;align-items:center;}
+
+/* =====================================================================
+   FIXES v15 - move arrow buttons (query-columns) + white selects/lists
+   ===================================================================== */
+/* --- 1. Move-left / move-right arrow buttons: keep the icon inside the box --- */
+button.move-left,button.move-right,.query-columns button{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:34px!important;height:30px!important;box-sizing:border-box!important;
+  padding:0!important;margin:0!important;overflow:hidden!important;
+  background:var(--panel2)!important;border:1px solid var(--line)!important;border-radius:8px!important;
+  color:var(--icon-color)!important;}
+button.move-left svg,button.move-right svg,.query-columns button svg{
+  width:16px!important;height:16px!important;max-width:100%!important;max-height:100%!important;
+  display:block!important;margin:0!important;padding:0!important;color:var(--icon-color)!important;
+  fill:none!important;stroke:currentColor!important;flex-shrink:0!important;}
+button.move-left:hover,button.move-right:hover{background:var(--accent)!important;color:#fff!important;border-color:transparent!important;}
+button.move-left:hover svg,button.move-right:hover svg{color:#fff!important;}
+
+/* --- 2. Multiple-column selects (query-columns) and all selects: dark like the calendar --- */
+.query-columns select,select[multiple],select,textarea,input[type="text"],input[type="password"],
+input[type="date"],input[type="email"],input[type="number"],input[type="search"]{
+  background:var(--row)!important;color:var(--text)!important;border:1px solid var(--line)!important;border-radius:8px!important;}
+.query-columns select[multiple],select[multiple]{
+  padding:4px!important;min-height:120px;}
+.query-columns select option,select option,select optgroup{
+  background:var(--row)!important;color:var(--text)!important;}
+select optgroup{color:var(--muted)!important;font-style:normal!important;}
+.query-columns select option:hover,select option:hover,select option:checked,
+.query-columns select option[selected]{background:var(--accent)!important;color:#fff!important;}
+.query-columns label,form label{color:var(--text)!important;}
+/* keep focus visible on dark */
+select:focus,textarea:focus,input:focus{outline:none!important;border-color:var(--accent)!important;box-shadow:0 0 0 1px var(--accent)!important;}
+
+/* =====================================================================
+   FIXES v16 - top-menu "Projects" icon bug + Activity page headers
+   ===================================================================== */
+/* --- 1. Top-menu Projects link: icon must behave exactly like the others --- */
+#top-menu a.projects,#top-menu a.projects.selected{
+  display:block!important;width:34px!important;height:34px!important;padding:0!important;margin:0!important;
+  font-size:0!important;line-height:0!important;border-radius:8px!important;overflow:hidden!important;
+  background:transparent!important;position:relative!important;text-indent:0!important;}
+#top-menu a.projects::before{--i:var(--ic-folder)!important;
+  content:""!important;display:block!important;width:19px!important;height:19px!important;margin:7.5px!important;
+  background:currentColor!important;-webkit-mask:var(--i) center/contain no-repeat!important;mask:var(--i) center/contain no-repeat!important;}
+#top-menu a.projects:hover{color:#fff!important;background:var(--panel2)!important;}
+#top-menu a.projects.selected,#top-menu a.projects.selected:hover{color:#fff!important;background:var(--accent)!important;}
+/* hide the real svg icon if the browser renders one inside the link */
+#top-menu a.projects svg{display:none!important;}
+/* same safety net for every top-menu item: text hidden, mask icon shown */
+#top-menu li a{font-size:0!important;line-height:0!important;}
+#top-menu li a::before{width:19px!important;height:19px!important;margin:7.5px!important;}
+
+/* --- 2. Activity page: dark section headers + readable rows --- */
+#activity h3,#content h3{background:transparent!important;color:#fff!important;border-bottom:1px solid var(--line)!important;padding:8px 4px!important;margin:14px 0 8px!important;}
+/* event rows */
+#activity dt{background:var(--row)!important;color:var(--text)!important;border:0!important;border-bottom:1px solid var(--line)!important;
+  padding:8px 10px!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important;}
+#activity dt.grouped{border-top:0!important;}
+#activity dt svg.s18,#activity dt svg.icon-svg{color:var(--icon-color)!important;fill:none!important;stroke:currentColor!important;flex-shrink:0!important;}
+#activity dt a{color:var(--link)!important;}
+#activity dt a:hover{color:#fff!important;}
+#activity dt .time{color:var(--muted)!important;font-size:11px;}
+#activity dt .project{color:var(--muted)!important;font-size:11px;background:var(--panel2)!important;border-radius:6px;padding:2px 8px;}
+#activity dt .project a,#activity dt .project{color:var(--muted)!important;}
+#activity dd{background:transparent!important;color:var(--muted)!important;border:0!important;padding:4px 10px 10px 34px!important;margin:0!important;}
+#activity dd .author,#activity dd .description{color:var(--muted)!important;}
+#activity dd a{color:var(--link)!important;}
+/* avatars keep their own colours, just round them */
+#activity dt .avatar{border-radius:50%!important;border:0!important;}
+
+/* =====================================================================
+   FIXES v17 - top-menu Projects icon still a dot: reference the folder
+   mask DIRECTLY (no --i indirection) so the circle fallback can't win
+   ===================================================================== */
+#top-menu a.projects::before,#top-menu a.projects.selected::before,
+#top-menu li a[href="/projects"]::before{
+  -webkit-mask-image:var(--ic-folder)!important;
+  mask-image:var(--ic-folder)!important;
+  -webkit-mask:var(--ic-folder) center/contain no-repeat!important;
+  mask:var(--ic-folder) center/contain no-repeat!important;
+  content:""!important;display:block!important;
+  width:19px!important;height:19px!important;margin:7.5px!important;
+  background:currentColor!important;}
+/* and do the same direct-mask treatment for every other top-menu item,
+   so none of them can ever fall back to the dot either */
+#top-menu a.home::before{-webkit-mask:var(--ic-home) center/contain no-repeat!important;mask:var(--ic-home) center/contain no-repeat!important;}
+#top-menu a.my-page::before,#top-menu a.my-account::before,#top-menu a.login::before,#top-menu a.register::before{-webkit-mask:var(--ic-user) center/contain no-repeat!important;mask:var(--ic-user) center/contain no-repeat!important;}
+#top-menu a.administration::before{-webkit-mask:var(--ic-admin) center/contain no-repeat!important;mask:var(--ic-admin) center/contain no-repeat!important;}
+#top-menu a.help::before{-webkit-mask:var(--ic-help) center/contain no-repeat!important;mask:var(--ic-help) center/contain no-repeat!important;}
+#top-menu a.logout::before{-webkit-mask:var(--ic-logout) center/contain no-repeat!important;mask:var(--ic-logout) center/contain no-repeat!important;}
+
+/* =====================================================================
+   FIXES v18 - unreadable dark-grey .label spans (attributes, roles, etc.)
+   ===================================================================== */
+span.label,.label,.attributes span.label,
+#issue-form label,form label,label,dt.label,th.label{
+  color:var(--text)!important;}
+/* labels that act like small headings / key names get the muted-but-readable tone */
+.attributes span.label,span.label{
+  background:transparent!important;}
+/* role/permission labels inside user & member lists */
+.members span.label,.user span.label,.splitcontent span.label,#content span.label,
+.members .group span.label{color:var(--text)!important;}
+/* "Developer:" style labels that are bold separators */
+span.label,.attributes label,.attributes .label{
+  font-weight:600!important;}
+/* any remaining grey-on-grey: force readable values too */
+.attributes .value,.splitcontent .value,.members .user{color:var(--text)!important;}
+
+/* =====================================================================
+   FIXES v19 - section headings (h3.icon etc.) dark grey -> light
+   ===================================================================== */
+h3.icon,h2.icon,h4.icon,h3.icon .icon-label,h2.icon .icon-label,h4.icon .icon-label,
+h3,h2,h4,#content h2,#content h3,#content h4{
+  color:var(--text)!important;}
+/* the inline <svg><use> sprite icons inside those headings track currentColor */
+h3 svg.icon-svg,h2 svg.icon-svg,h4 svg.icon-svg,
+h3 .s18,h2 .s18,h4 .s18{
+  color:var(--icon-color)!important;fill:none!important;stroke:currentColor!important;
+  vertical-align:middle!important;margin-right:6px!important;}
+h3.icon:hover,h2.icon:hover{color:#fff!important;}
+h3.icon:hover svg,h2.icon:hover svg{color:#fff!important;}
+
+/* =====================================================================
+   FIXES v20 - dot fallback returns on some pages (activity etc.): make
+   the BASE top-menu mask the folder icon directly; per-item rules in
+   v17 still override it, so nothing can ever show the dot again
+   ===================================================================== */
+#top-menu li a::before,#account li a::before,#top-menu ul a::before,#account ul a::before{
+  -webkit-mask:var(--ic-folder) center/contain no-repeat!important;
+  mask:var(--ic-folder) center/contain no-repeat!important;
+  -webkit-mask-image:var(--ic-folder)!important;
+  mask-image:var(--ic-folder)!important;}
+
+/* =====================================================================
+   FIXES v21 - LEFT SIDEBAR ONLY: admin-menu links like
+   <a class="icon icon-projects projects selected"> must show their
+   sprite icon (folder for projects) in a readable colour
+   ===================================================================== */
+#admin-menu a.icon,#sidebar #admin-menu a.icon{
+  color:var(--icon-color)!important;}
+#admin-menu a.icon:hover,#sidebar #admin-menu a.icon:hover{
+  color:#fff!important;}
+#admin-menu a.icon.selected,#sidebar #admin-menu a.icon.selected{
+  color:#fff!important;}
+#admin-menu a.icon svg.icon-svg,#sidebar #admin-menu a.icon svg.icon-svg,
+#admin-menu a.icon .s18,#sidebar #admin-menu a.icon .s18{
+  color:currentColor!important;fill:none!important;stroke:currentColor!important;
+  width:16px!important;height:16px!important;vertical-align:middle!important;margin-right:6px!important;}
+/* selected admin links keep the accent bar; text/icon stay readable */
+#admin-menu a.icon.selected{background:var(--accent)!important;}
+
+/* =====================================================================
+   FIXES v22 - every remaining sprite icon (e.g. <use icon--checked>)
+   readable; dot fallbacks eliminated in ALL menus
+   ===================================================================== */
+svg.icon-svg,svg.s18.icon-svg,svg.s20.icon-svg,svg.s14.icon-svg,svg.s24.icon-svg{
+  color:var(--icon-color)!important;fill:none!important;stroke:currentColor!important;
+  vertical-align:middle!important;}
+a:hover svg.icon-svg,a.selected svg.icon-svg{
+  color:#fff!important;}
+/* NOTE: base ::before fallbacks are set via --i (folder), per-item rules
+   set --i too - NO direct mask-image overrides here or they'd kill the
+   per-item icons */
+
+/* =====================================================================
+   FIXES v23 - remove the noisy "checked" tick sprite icons everywhere
+   ===================================================================== */
+svg.icon-svg:has(use[href*="icon--checked"]),
+svg:has(use[href$="#icon--checked"]),
+svg.icon-svg use[href*="icon--checked"]{
+  display:none!important;}
+
+/* =====================================================================
+   FIXES v24 - RTL SUPPORT (html[dir="rtl"] set by Redmine for ar/fa/he...)
+   mirrors the whole layout: rail on the right, content on the left
+   ===================================================================== */
+html[dir="rtl"]{direction:rtl;}
+/* --- icon rail: move to the RIGHT side --- */
+html[dir="rtl"] body::before{left:auto;right:0;border-right:0;border-left:1px solid var(--line);}
+html[dir="rtl"] body::after{left:auto;right:12px;}
+html[dir="rtl"] #main-menu,html[dir="rtl"] #main-menu.tabs{left:auto!important;right:0!important;
+  border-right:0!important;border-left:1px solid var(--line)!important;}
+/* --- wrapper content: pad on the right instead of the left --- */
+html[dir="rtl"] #wrapper{padding:76px calc(var(--rail) + 20px) 20px 20px;}
+/* --- floating top bar --- */
+html[dir="rtl"] #top-menu{left:20px;right:calc(var(--rail) + 20px);}
+/* --- quick search --- */
+html[dir="rtl"] #quick-search{right:auto;left:26px;}
+/* --- rail tooltips fly out to the LEFT now --- */
+html[dir="rtl"] #main-menu li a:hover::after,html[dir="rtl"] #main-menu li a:focus::after{
+  left:auto;right:50px;}
+/* --- expanded rail flyout menus open leftwards --- */
+html[dir="rtl"] #main-menu li ul.menu-children{
+  left:auto!important;right:calc(var(--rail) + 4px)!important;}
+html[dir="rtl"] #main-menu li ul.menu-children::before{left:auto;right:-14px;}
+/* --- sidebar --- */
+html[dir="rtl"] #sidebar{padding:0 14px 0 0;}
+/* --- tables --- */
+html[dir="rtl"] table.list td.subject,html[dir="rtl"] table.list td.name,
+html[dir="rtl"] table.list td.title,html[dir="rtl"] table.list td.description,
+html[dir="rtl"] table.list td.comments{text-align:right;}
+html[dir="rtl"] table.list td.subject{padding-left:8px;padding-right:14px;}
+html[dir="rtl"] table.list tbody tr td:first-child{border-left:0;border-right:3px solid var(--good);}
+/* sort arrows: flip padding + arrow side */
+html[dir="rtl"] table.list thead th a.sort{padding-right:8px!important;padding-left:18px!important;}
+html[dir="rtl"] table.list thead th a.sort::after{right:auto;left:0;}
+/* --- flash messages: icon on the right --- */
+html[dir="rtl"] div.flash{padding-right:44px!important;padding-left:12px!important;}
+html[dir="rtl"] div.flash::before,html[dir="rtl"] #flash_notice::before,
+html[dir="rtl"] #flash_error::before,html[dir="rtl"] #flash_warning::before{
+  left:auto!important;right:16px!important;margin:-10px 0 0 0!important;}
+/* --- collapsible fieldset chevrons --- */
+html[dir="rtl"] fieldset.collapsible > legend{padding-left:0!important;padding-right:22px!important;}
+html[dir="rtl"] fieldset.collapsible > legend::before,
+html[dir="rtl"] legend.icon-expended::before,html[dir="rtl"] legend.icon-collapsed::before{
+  left:auto!important;right:2px!important;}
+/* --- context menu folder arrows --- */
+html[dir="rtl"] #context-menu li.folder::after{right:auto;left:8px;}
+/* --- syntax highlighting line numbers --- */
+html[dir="rtl"] .CodeRay td.line-numbers,html[dir="rtl"] .syntaxhl td.line-numbers,
+html[dir="rtl"] .syntaxhl .line-numbers{border-right:0!important;border-left:1px solid var(--line)!important;}
+/* --- wiki / forms: mirror input text direction --- */
+html[dir="rtl"] #content input[type="text"],html[dir="rtl"] #content input[type="password"],
+html[dir="rtl"] #content input[type="search"],html[dir="rtl"] #content textarea,
+html[dir="rtl"] #quick-search input[type="text"]{direction:rtl;text-align:right;}
+/* --- generic Redmine LTR leftovers --- */
+html[dir="rtl"] .contextual{float:left;text-align:left;}
+html[dir="rtl"] .splitcontentleft{float:right;}
+html[dir="rtl"] .splitcontentright{float:left;}
+html[dir="rtl"] .query-columns .buttons input[type="button"],html[dir="rtl"] .buttons{direction:rtl;}
+html[dir="rtl"] #header h1 .breadcrumbs{direction:rtl;}
+html[dir="rtl"] ul.tabs{margin:0;padding:0;text-align:right;}
+html[dir="rtl"] .tab-content,html[dir="rtl"] #tab-content-modules{direction:rtl;}
+/* pagination */
+html[dir="rtl"] .pagination .pages,html[dir="rtl"] .pagination{direction:rtl;}
+/* --- mobile / responsive: keep the mirror consistent --- */
+@media (max-width: 900px){
+  html[dir="rtl"] #wrapper{padding:70px 10px 10px;}
+  html[dir="rtl"] body::before,html[dir="rtl"] body::after{display:none;}
+  html[dir="rtl"] #top-menu{left:10px;right:10px;}
+  html[dir="rtl"] #quick-search{left:10px;right:auto;}
+}
+
+/* =====================================================================
+   FIXES v25 - login: distinct KEY icon (no longer looks like sign-up)
+   + login form styled as a themed card matching the rest of the app
+   ===================================================================== */
+#top-menu a.login::before{--i:var(--ic-key)!important}
+/* v26: login/register need DIRECT masks - the li-level folder !important
+   from v20 was flattening both to the same folder icon */
+#top-menu a.login::before{
+  -webkit-mask:var(--ic-key) center/contain no-repeat!important;
+  mask:var(--ic-key) center/contain no-repeat!important;
+  -webkit-mask-image:var(--ic-key)!important;mask-image:var(--ic-key)!important;}
+#top-menu a.register::before{
+  -webkit-mask:var(--ic-user) center/contain no-repeat!important;
+  mask:var(--ic-user) center/contain no-repeat!important;
+  -webkit-mask-image:var(--ic-user)!important;mask-image:var(--ic-user)!important;}
+
+#login-form{
+  max-width:420px;margin:60px auto 0;padding:28px 28px 24px;
+  background:var(--panel2);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 12px 36px rgba(0,0,0,.35);box-sizing:border-box;}
+#login-form form{display:flex;flex-direction:column;gap:14px;}
+#login-form label{
+  display:block;margin:0 0 6px;color:var(--muted);font-size:12px;
+  font-weight:600;letter-spacing:.03em;text-transform:uppercase;}
+#login-form label a.lost_password{
+  float:right;font-size:11px;font-weight:500;text-transform:none;
+  color:var(--link);text-decoration:none;}
+#login-form label a.lost_password:hover{color:#fff;text-decoration:underline;}
+#login-form input[type="text"],#login-form input[type="password"]{
+  width:100%;box-sizing:border-box;padding:10px 12px;font-size:14px;
+  color:var(--text);background:#1b1e36;border:1px solid var(--line);
+  border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#login-form input[type="text"]:focus,#login-form input[type="password"]:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(123,104,238,.25);}
+#login-form input[type="text"],#login-form input[type="password"]{direction:ltr;text-align:left;}
+#login-form input#login-submit{
+  margin-top:6px;padding:11px 16px;font-size:14px;font-weight:600;
+  color:#fff!important;background:linear-gradient(135deg,#7b68ee,#5546d6)!important;
+  border:0!important;border-radius:10px;cursor:pointer;
+  box-shadow:0 8px 22px rgba(123,104,238,.4);transition:filter .15s,transform .1s;width:100%;}
+#login-form input#login-submit:hover{filter:brightness(1.12);}
+#login-form input#login-submit:active{transform:translateY(1px);}
+html[dir="rtl"] #login-form{direction:rtl;}
+html[dir="rtl"] #login-form label a.lost_password{float:left;}
+html[dir="rtl"] #login-form input[type="text"],html[dir="rtl"] #login-form input[type="password"]{direction:ltr;text-align:left;}
+@media (max-width: 900px){
+  #login-form{margin:20px 10px 0;}
+}
