@@ -1240,3 +1240,32 @@ html[dir="rtl"] #login-form input[type="text"],html[dir="rtl"] #login-form input
   box-shadow:none!important;border:0!important;background:transparent!important;}
 /* safety net: also neutralise any sticky-header helpers on the issue page */
 body.action-show .sticky-issue-header,body.action-show #sticky-issue-header{position:static!important;display:none!important;}
+
+/* =====================================================================
+   FIXES v27 - restore the little arrow on <select> dropdowns
+   =====================================================================
+   Core Redmine (5.1+/6) sets  select{appearance:none; background-image:url(chevron)}
+   Our earlier fixes use the  background:...  SHORTHAND on selects which wipes that
+   background-image, and appearance:none (from core) removes the native arrow ->
+   dark select with no arrow at all. Draw our own chevron instead. */
+select:not([multiple]):not([size]){
+  -webkit-appearance:none!important;appearance:none!important;
+  padding-right:26px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238d91b6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 8px center!important;
+  background-size:14px 14px!important;}
+/* keep the dark background but as color-only so the chevron image survives */
+select:not([multiple]):not([size]){background-color:var(--row)!important;}
+/* hover/focus: chevron lightens */
+select:not([multiple]):not([size]):hover,
+select:not([multiple]):not([size]):focus{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")!important;}
+/* disabled selects: dim the chevron */
+select:not([multiple]):not([size]):disabled{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23565a7d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")!important;}
+/* RTL: arrow on the left side */
+html[dir="rtl"] select:not([multiple]):not([size]){
+  background-position:left 8px center!important;
+  padding-right:8px!important;padding-left:26px!important;}
+/* multi-selects and query-columns lists never had an arrow - don't touch them */
+select[multiple],select[size],.query-columns select[multiple]{appearance:auto!important;-webkit-appearance:menulist!important;background-image:none!important;}
