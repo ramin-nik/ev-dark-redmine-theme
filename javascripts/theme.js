@@ -1,4 +1,4 @@
-/* Evolution Dark: labels for icon-only menu links (hover flyout / expanded rail) - fully offline */
+/* Ev Dark: labels for icon-only menu links (hover flyout / expanded rail) - fully offline */
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('#main-menu > ul > li > a, #top-menu li a').forEach(function (a) {
     var t = a.textContent.trim();
