@@ -1177,3 +1177,66 @@ html[dir="rtl"] #login-form input[type="text"],html[dir="rtl"] #login-form input
 @media (max-width: 900px){
   #login-form{margin:20px 10px 0;}
 }
+
+/* =====================================================================
+   FIXES v26 - journal header background + kill sticky issue header
+   ===================================================================== */
+/* --- 1. Journal (note) header: give the whole header block a proper dark,
+          readable look instead of Redmine's light/grey-on-grey defaults --- */
+.journal h4.journal-header,div.journal h4.journal-header,h4.journal-header{
+  background:var(--panel2)!important;
+  color:var(--text)!important;
+  border:1px solid var(--line)!important;
+  border-radius:10px 10px 0 0;
+  padding:10px 14px!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  font-weight:500!important;
+  box-sizing:border-box!important;}
+/* journal containers get a matching body below the header */
+.journal.journal-has-notes,.journal.has-notes,div.journal{
+  background:transparent!important;
+  border:1px solid var(--line)!important;
+  border-radius:10px!important;}
+/* info line: user link + timestamp readable */
+.journal h4.journal-header .journal-info{
+  color:var(--sub)!important;
+  display:flex!important;align-items:center!important;gap:8px!important;
+  min-width:0;flex-wrap:wrap;}
+.journal h4.journal-header a.user{color:var(--link)!important;font-weight:600;}
+.journal h4.journal-header a.user:hover{color:var(--link-hover)!important;}
+.journal h4.journal-header .journal-info a:not(.user){color:var(--muted)!important;}
+.journal h4.journal-header .journal-info a:not(.user):hover{color:#fff!important;}
+/* avatar span (e.g. "RN") keeps its own colour classes, just round it */
+.journal h4.journal-header .avatar{border-radius:50%!important;flex-shrink:0!important;}
+/* private-notes marker span must never paint anything weird */
+.journal h4.journal-header span[class*="private_notes"]:empty{display:none!important;}
+/* meta side (#1 link, actions, reactions) */
+.journal h4.journal-header .journal-meta{
+  display:flex!important;align-items:center!important;gap:8px!important;
+  color:var(--muted)!important;flex-shrink:0;}
+.journal h4.journal-header .journal-link{color:var(--link)!important;font-weight:600;}
+.journal h4.journal-header .journal-link:hover{color:#fff!important;}
+.journal h4.journal-header .journal-actions a,
+.journal h4.journal-header .journal-actions .icon{color:var(--muted)!important;background:transparent!important;}
+.journal h4.journal-header .journal-actions a:hover,
+.journal h4.journal-header .journal-actions .icon:hover{color:#fff!important;background:var(--panel)!important;border-radius:8px;}
+/* note body inside journal stays readable */
+.journal .wiki,.journal .journal-notes,.journal div.wiki{color:var(--text)!important;}
+/* the "Updated by ..." line inside the header is muted, not invisible */
+.journal h4.journal-header .journal-info,.journal h4.journal-header .journal-info *{text-decoration:none;}
+
+/* --- 2. Sticky issue header: Redmine's JS pins it to the top of the
+          viewport and it breaks the layout. Disable the stickiness entirely:
+          remove fixed/sticky positioning and hide it when it becomes visible --- */
+#sticky-issue-header,
+#sticky-issue-header.is-visible,
+#sticky-issue-header[data-sticky-issue-header-target="stickyHeader"]{
+  position:static!important;top:auto!important;left:auto!important;right:auto!important;
+  z-index:auto!important;display:none!important;
+  box-shadow:none!important;border:0!important;background:transparent!important;}
+/* safety net: also neutralise any sticky-header helpers on the issue page */
+body.action-show .sticky-issue-header,body.action-show #sticky-issue-header{position:static!important;display:none!important;}
