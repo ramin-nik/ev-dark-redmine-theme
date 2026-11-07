@@ -1269,3 +1269,115 @@ html[dir="rtl"] select:not([multiple]):not([size]){
   padding-right:8px!important;padding-left:26px!important;}
 /* multi-selects and query-columns lists never had an arrow - don't touch them */
 select[multiple],select[size],.query-columns select[multiple]{appearance:auto!important;-webkit-appearance:menulist!important;background-image:none!important;}
+
+/* =====================================================================
+   RESPONSIVE - mobile / tablet (portrait). Placed LAST so it wins the
+   cascade over the FIXES v2-v27 !important layout rules. The rail becomes
+   a horizontal icon bar, the top bar wraps, the sidebar stacks, forms and
+   split columns go full width, tables scroll.
+   ===================================================================== */
+@media (max-width: 900px){
+  :root{--rail:0px;}
+
+  /* base layout: drop the fixed left rail, pad the wrapper on all sides */
+  body::before,body::after{display:none!important;}
+  #wrapper{padding:64px 12px 16px!important;}
+  html[dir="rtl"] #wrapper{padding:64px 12px 16px!important;}
+  #wrapper3{padding:0!important;}
+
+  /* main menu -> horizontal icon bar that flows in the page */
+  #main-menu,#main-menu.tabs{
+    position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+    width:auto!important;height:auto!important;
+    margin:0 0 12px!important;padding:8px!important;
+    background:var(--panel)!important;border:1px solid var(--line)!important;border-radius:12px!important;
+    box-shadow:none!important;overflow:visible!important;}
+  #main-menu > ul{display:flex!important;flex-wrap:wrap!important;gap:4px!important;}
+  #main-menu > ul > li,#main-menu li{display:inline-block!important;margin:2px!important;float:none!important;width:auto!important;height:auto!important;}
+  #main-menu > ul > li > a,#main-menu li > a{
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    width:44px!important;height:44px!important;margin:0!important;padding:0!important;}
+  #main-menu li > a::before{position:static!important;margin:0!important;width:22px!important;height:22px!important;}
+  /* disable the expand-on-hover rail (no room on touch); keep icons-only */
+  #main-menu:hover,#main-menu:focus-within,#main-menu.tabs:hover{width:auto!important;box-shadow:none!important;}
+  #main-menu:hover > ul > li > a::after,#main-menu:focus-within > ul > li > a::after{content:none!important;}
+  /* "+" dropdown opens below the bar, left aligned */
+  #main-menu li:hover > ul.menu-children,#main-menu li:focus-within > ul.menu-children,#main-menu li ul.menu-children.show{
+    position:absolute!important;left:8px!important;right:auto!important;top:100%!important;margin:4px 0 0!important;}
+  html[dir="rtl"] #main-menu li:hover > ul.menu-children,html[dir="rtl"] #main-menu li:focus-within > ul.menu-children{left:auto!important;right:8px!important;}
+
+  /* top bar: full width, wraps */
+  #top-menu{left:8px!important;right:8px!important;height:auto!important;min-height:44px!important;
+    display:flex!important;align-items:center!important;flex-wrap:wrap!important;padding:6px 8px!important;gap:4px!important;}
+  /* nested menus must wrap and their icon buttons must NOT shrink to zero
+     on a narrow viewport, otherwise Home/Projects/Login/Register vanish */
+  #top-menu ul,#account ul{flex-wrap:wrap!important;}
+  #top-menu li,#account li{flex-shrink:0!important;}
+  #account{display:flex!important;}
+  #loggedas{margin-left:auto;}
+
+  /* quick search: in flow, not floating over the content */
+  #quick-search{position:static!important;top:auto!important;right:auto!important;left:auto!important;
+    margin:0 0 12px!important;justify-content:flex-end!important;}
+  html[dir="rtl"] #quick-search{left:auto!important;right:auto!important;}
+  #quick-search input#q{width:100%!important;max-width:320px!important;}
+  #quick-search input#q:focus{width:100%!important;}
+
+  /* content panel: tighter padding */
+  #content{padding:14px 12px!important;border-radius:12px!important;}
+  #content h2{font-size:18px!important;}
+
+  /* right sidebar stacks full width below the content */
+  #sidebar{float:none!important;width:auto!important;min-width:0!important;
+    margin:16px 0 0!important;padding:14px 0 0!important;border-top:1px solid var(--line);}
+  #sidebar h3{margin-top:0;}
+
+  /* split content columns stack vertically */
+  .splitcontent{display:block!important;}
+  .splitcontentleft,.splitcontentright{float:none!important;width:auto!important;min-width:0!important;margin:0 0 14px!important;}
+
+  /* forms: stack label/control rows, full-width fields */
+  form.tabular .box,form .box{padding:12px!important;}
+  form.tabular p,form.tabular div.row,form.tabular fieldset,form.tabular table{display:block!important;}
+  form.tabular label,form.tabular label.floating{display:block!important;float:none!important;width:auto!important;
+    text-align:left!important;padding:0 0 4px!important;margin:0 0 2px!important;}
+  form.tabular input[type="text"],form.tabular input[type="password"],form.tabular input[type="email"],
+  form.tabular input[type="number"],form.tabular input[type="date"],form.tabular input[type="url"],
+  form.tabular textarea,form.tabular select{width:100%!important;max-width:100%!important;box-sizing:border-box!important;}
+  input[type="text"],input[type="email"],input[type="number"],input[type="date"],input[type="search"],
+  input[type="url"],textarea,select{max-width:100%!important;}
+
+  /* tables: keep them horizontally scrollable, reduce padding */
+  .autoscroll{overflow-x:auto!important;-webkit-overflow-scrolling:touch;}
+  table.list{font-size:12px;}
+  table.list thead th,table.list tbody td{padding:8px 6px!important;}
+
+  /* query form filters stack */
+  #filters-table,#filters-table tbody,#filters-table tr,#filters-table td{display:block!important;width:auto!important;}
+  #filters-table td{padding:4px 0!important;}
+  #query_form_with_buttons .boxes{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+  #query_form_with_buttons p{margin:4px 0!important;}
+
+  /* settings / admin card grids: narrower columns */
+  #content #admin-menu ul{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:12px!important;}
+  body.controller-settings div.tabs:not(.jstTabs) ul,body.controller-projects.action-settings div.tabs:not(.jstTabs) ul{
+    grid-template-columns:repeat(auto-fill,minmax(110px,1fr))!important;}
+
+  /* contextual action buttons drop below the title and wrap */
+  .contextual{float:none!important;display:block!important;margin:6px 0!important;text-align:right;}
+  div.breadcrumbs,.contextual{white-space:normal;}
+}
+
+@media (max-width: 600px){
+  :root{--rail:0px;}
+  #wrapper{padding:58px 8px 12px!important;}
+  #top-menu{font-size:11px!important;padding:5px 6px!important;}
+  #top-menu li a,#account li a{width:30px!important;height:30px!important;}
+  #top-menu li a::before,#account li a::before{width:17px!important;height:17px!important;margin:6.5px!important;}
+  #main-menu > ul > li > a,#main-menu li > a{width:40px!important;height:40px!important;}
+  #content{padding:12px 10px!important;}
+  #content h2{font-size:16px!important;}
+  #login-form{margin:16px 8px 0!important;padding:20px 16px!important;}
+  .pagination{font-size:11px;}
+  table.list{font-size:11px;}
+}
